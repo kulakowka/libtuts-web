@@ -1,41 +1,47 @@
 extends ../layout
 
 block content
-  h1= tutorial.title
-  .content= tutorial.content
-
-  p
-    = 'Languages: '
-    each language, index in tutorial.languages
-      if index
-        = ", "
-      a(href=`/language/${language.slug}`)= language.name
-  p
-    = 'Platforms: '
-    each platform, index in tutorial.platforms
-      if index
-        = ", "
-      a(href=`/${platform.slug}`)= platform.name
+  article.tutorialShow
+    h1= tutorial.title
+    .content!= marked(tutorial.content)
+    .meta
       
-  p
-    = 'Projects: '
-    each project, index in tutorial.projects
-      if index
-        = ", "
-      a(href="/"+project.platform+"/"+project.slug)= project.name
-  
-  p
-    = 'Contributors: '
-    each contributor, index in tutorial.contributors
-      if index
-        = ", "
-      a(href="/users/"+contributor.username)= contributor.fullName
-  br
-  
-  hr
-  h3 Questions and discussion
-  
-  include ../comments/list
+      p
+        = "Created by: "
+        a(href=`/users/${tutorial.createdBy.username}`)= tutorial.createdBy.username
+      p
+        = 'Contributors: '
+        each contributor, index in tutorial.contributors
+          if index
+            = ", "
+          a(href="/users/"+contributor.username)= contributor.username
+      p
+        = "Source Url: "
+        a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+      p
+        = 'Languages: '
+        each language, index in tutorial.languages
+          if index
+            = ", "
+          a(href=`/languages/${language.slug}`)= language.name
+      p
+        = 'Platforms: '
+        each platform, index in tutorial.platforms
+          if index
+            = ", "
+          a(href=`/${platform.slug}`)= platform.name
+      p
+        = 'Projects: '
+        each project, index in tutorial.projects
+          if index
+            = ", "
+          a(href="/"+project.platform+"/"+project.slug)= project.name
+      
+    br
+    hr
+    h3 Questions and discussion
+    
+    //- include ../comments/list
 
 
 

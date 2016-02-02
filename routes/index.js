@@ -1,6 +1,7 @@
 const _ = require('lodash')
 const express = require('express')
 const request = require('../utils/request')
+const marked = require('marked')
 const async = require('async')
 const router = express.Router()
 
@@ -290,6 +291,7 @@ router.use((req, res, next) => {
 
 router.use((req, res, next) => {
   res.locals.currentUser = req.session.user
+  res.locals.marked = marked
   next()
 })
 
@@ -382,11 +384,15 @@ router.get('/project/new', (req, res, next) => {
 })
 
 router.get('/tutorial/:id', (req, res, next) => {
-  var tutorial = dataTutorial[req.params.id]
-  var comments = dataComments[req.params.id]
-  res.render('tutorials/show', {
-    tutorial: tutorial,
-    comments: comments
+  async.parallel({
+    tutorial (callback) {
+      request(`/tutorial/${req.params.id}?populate=createdBy,platforms,languages,projects,contributors`, (err, response, body) => callback(err, body))
+    }
+  }, (err, results) => {
+    if (err) return next(err)
+
+    results.comments = []
+    res.render('tutorials/show', results)
   })
 })
 
@@ -397,29 +403,44 @@ router.get('/users/:username', (req, res, next) => {
 })
 
 router.get('/languages', (req, res, next) => {
-  res.render('languages/index', data)
+  async.parallel({
+    languages (callback) {
+      request('/language?populate=no&limit=100&sort=createdAt asc', (err, response, body) => callback(err, body))
+    }
+  }, (err, results) => {
+    if (err) return next(err)
+    res.render('languages/index', results)
+  })
 })
 
 router.get('/language/:language', (req, res, next) => {
-  var language = dataLanguage[req.params.language]
-  var projects = dataLanguageProjects[req.params.language]
-
-  res.render('languages/show', {
-    language: language,
-    projects: projects
+  async.waterfall([
+    (callback) => request(`/language/${req.params.language}?populate=no`, (err, response, body) => callback(err, body)),
+    (language, callback) => request(`/project?where=${JSON.stringify({language: language.id})}&populate=language,platform`, (err, response, body) => callback(err, {language, projects: body}))
+  ], (err, results) => {
+    if (err) return next(err)
+    res.render('languages/show', results)
   })
 })
 
 router.get('/platforms', (req, res, next) => {
-  res.render('platforms/index', data)
+  async.parallel({
+    platforms (callback) {
+      request('/platform?populate=no&limit=100&sort=createdAt asc', (err, response, body) => callback(err, body))
+    }
+  }, (err, results) => {
+    if (err) return next(err)
+    res.render('platforms/index', results)
+  })
 })
 
 router.get('/:platform', (req, res, next) => {
-  var platform = dataPlatform[req.params.platform]
-  var projects = dataPlatformProjects[req.params.platform]
-  res.render('platforms/show', {
-    platform: platform,
-    projects: projects
+  async.waterfall([
+    (callback) => request(`/platform/${req.params.platform}?populate=no`, (err, response, body) => callback(err, body)),
+    (platform, callback) => request(`/project?where=${JSON.stringify({platform: platform.id})}&populate=language,platform`, (err, response, body) => callback(err, {platform, projects: body}))
+  ], (err, results) => {
+    if (err) return next(err)
+    res.render('platforms/show', results)
   })
 })
 

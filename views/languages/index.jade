@@ -2,6 +2,4 @@ extends ../layout
 
 block content
   h1 Languages
-  each language in languages
-    h3
-      a(href=`/language/${language.slug}`)= language.name
+  include includes/grid
