@@ -76,13 +76,39 @@ footer
 .search button
   padding 4px 10px
 
-
+.projectsGrid,
 .platformsGrid,
 .languagesGrid
+  .projectItem
+    width 50%
+    padding-right 5%
+    display inline-block
+    vertical-align top
+    margin 30px 0px
+    position relative
+    color #222
+    &:hover
+      text-decoration none
+      
+    h3
+      margin 0px 0 5px
+      a
+        color #222
+        &:hover 
+          color #00b7ff
+    p
+      margin 0px 0 5px
+    .meta
+      color grey
+      font-size 0.9em
+      a
+        color grey
   a.platformItem,
   a.languageItem
+    width 33.3%
     display inline-block
-    margin 30px 40px
+    vertical-align top
+    margin 30px 0px
     position relative
     padding-left 50px
     color #222
@@ -99,5 +125,5 @@ footer
       margin 0px 0 5px
     .projectsCount
       color grey
-      font-size 0.8em
+      font-size 0.9em
       

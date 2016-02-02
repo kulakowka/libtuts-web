@@ -294,24 +294,22 @@ router.use((req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  var projects = dataPopularProjects
-
   async.parallel({
+    projects (callback) {
+      request('/project?populate=platform,language&limit=15&sort=createdAt asc', (err, response, body) => callback(err, body))
+    },
     languages (callback) {
-      request('/language?populate=no&limit=10', (err, response, body) => callback(err, body))
+      request('/language?populate=no&limit=15&sort=createdAt asc', (err, response, body) => callback(err, body))
     },
     platforms (callback) {
-      request('/platform?populate=no', (err, response, body) => callback(err, body))
+      request('/platform?populate=no&limit=15&sort=createdAt asc', (err, response, body) => callback(err, body))
     },
     tutorials (callback) {
       request('/tutorial?populate=no&sort=createdAt desc', (err, response, body) => callback(err, body))
     }
   }, (err, results) => {
     if (err) return next(err)
-
-    res.render('index', Object.assign(results, {
-      projects: projects
-    }))
+    res.render('index', results)
   })
 })
 
