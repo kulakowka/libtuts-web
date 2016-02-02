@@ -301,7 +301,11 @@ router.get('/', (req, res, next) => {
   }))
 })
 
-router.get('/login', (req, res, next) => {
+router.get('/auth/signin', (req, res, next) => {
+  res.render('auth/signin')
+})
+
+router.post('/auth/signin', (req, res, next) => {
   req.session.user = {
     username: 'kulakowka',
     fullName: 'Anton Kulakov'
@@ -309,7 +313,11 @@ router.get('/login', (req, res, next) => {
   res.redirect('/')
 })
 
-router.get('/register', (req, res, next) => {
+router.get('/auth/signup', (req, res, next) => {
+  res.render('auth/signup')
+})
+
+router.post('/auth/signup', (req, res, next) => {
   req.session.user = {
     username: 'tj',
     fullName: 'TJ Holowaychuk'
@@ -317,7 +325,15 @@ router.get('/register', (req, res, next) => {
   res.redirect('/')
 })
 
-router.get('/logout', (req, res, next) => {
+router.get('/auth/recover', (req, res, next) => {
+  res.render('auth/recover')
+})
+
+router.get('/auth/resend', (req, res, next) => {
+  res.render('auth/resend')
+})
+
+router.get('/auth/logout', (req, res, next) => {
   delete req.session.user
   res.redirect('/')
 })

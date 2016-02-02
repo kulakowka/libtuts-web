@@ -7,6 +7,9 @@ form.projectForm(action="/projects" method="post" name="project")
 
   .field
     input(type="url" name="repositoryUrl" placeholder="Repository URL" value=project.repositoryUrl)
+
+  .field
+    input(type="url" name="packageManagerUrl" placeholder="Package manager URL" value=project.packageManagerUrl)
   
   .field
     textarea(name="description" rows="3" placeholder="Description" value=project.description)

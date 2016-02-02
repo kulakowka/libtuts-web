@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h1 Resend confirmation instructions  
+    
+  form.resendPasswordForm(action="/auth/resend" method="post" name="resendPassword")
+    .field
+      input(type="email" name="email" placeholder="Email" required)
+    .field
+      button(type="submit") Send instructions to email
+    .links
+      a(href="/auth/signin") Sign in
+      = " or "
+      a(href="/auth/signup") sign up
+    

@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1 Sign up
+  
+  form.signupForm(action="/auth/signin" method="post" name="signin")
+    .field
+      input(type="email" name="email" placeholder="Email" required)
+    .field
+      input(type="text" name="username" placeholder="Username" required)
+    .field
+      input(type="password" name="password" placeholder="Password" required)
+    .field
+      input(type="password" name="passwordConfirmation" placeholder="Confirm password" required)
+    .field
+      button(type="submit") Sign up
+    .links
+      a(href="/auth/recover") Forgot your password  
+      = " or "
+      a(href="/auth/resend") not received a letter?
