@@ -1,0 +1,28 @@
+form.projectForm(action="/projects" method="post" name="project")
+  .field
+    input(name="name" placeholder="Name" value=project.name)
+  
+  .field
+    input(type="url" name="homepageUrl" placeholder="Homepage URL" value=project.homepageUrl)
+
+  .field
+    input(type="url" name="repositoryUrl" placeholder="Repository URL" value=project.repositoryUrl)
+  
+  .field
+    textarea(name="description" rows="3" placeholder="Description" value=project.description)
+  
+  .field
+    input(name="keywords" placeholder="Keywords" value=project.keywords)
+  
+  .field
+    select(name="language" placeholder="Language")
+      each language in languages
+        option(value=language.id selected=language.selected)= language.name
+
+  .field
+    select(name="platform" placeholder="Platfrom")
+      each platform in platforms
+        option(value=platform.id selected=platform.selected)= platform.name
+    
+  .field
+    button(type="submit") Add project

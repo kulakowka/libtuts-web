@@ -1,7 +1,27 @@
 nav
-  a(href='/') Mainpage
-  != " &bull; "
-  a(href='/platforms') Platforms
-  != " &bull; "
-  a(href='/languages') Languages
+  ul
+    li
+      a(href='/') Mainpage
+    li
+      a(href='/platforms') Platforms
+    li 
+      a(href='/languages') Languages
+
+  if currentUser
+    ul
+      li
+        b
+          a(href=`/users/${currentUser.username}`)= currentUser.fullName
+      li
+        a(href='/tutorial/new') Add tutorial
+      li
+        a(href='/project/new') Add project
+      li
+        a(href=`/logout`) Logout
+  else
+    ul
+      li
+        a(href='/login') Login
+      li
+        a(href='/register') Register
 br

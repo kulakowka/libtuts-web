@@ -1,0 +1,32 @@
+form.tutorialForm(action="/tutorials" method="post" name="tutorial")
+  .field
+    input(name="title" placeholder="Title" value=tutorial.title)
+  
+  .field
+    input(name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl)
+  
+  .field
+    textarea(name="content" rows="5" placeholder="Content" value=tutorial.content)
+  
+  .field
+    input(name="keywords" placeholder="Keywords" value=tutorial.keywords)
+  
+  .field
+    select(name="languages" multiple placeholder="Languages")
+      each language in languages
+        option(value=language.id selected=language.selected)= language.name
+
+  .field
+    select(name="platforms" multiple placeholder="Platfroms")
+      each platform in platforms
+        option(value=platform.id selected=platform.selected)= platform.name
+
+  .field
+    select(name="projects" multiple placeholder="Project")
+      each project in projects
+        option(value=project.id selected=project.selected) #{project.platform}/#{project.name}
+    small Find project by name or paste a link to a repository that is not in our database
+      
+  .field
+    button(type="submit" name="publish") Publish
+    button(type="submit" name="draft") Draft

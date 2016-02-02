@@ -1,5 +1,6 @@
 var $ = require('jquery')
 var Pjax = require('pjax')
+require('selectize')
 
 // Configure pjax
 new Pjax({
@@ -10,12 +11,20 @@ new Pjax({
 })
 
 // Handlers
-var common = require('./handlers/common')
+var search = require('./handlers/search')
+var tutorial = require('./handlers/tutorial')
+var project = require('./handlers/project')
 
-// run common when page first loaded
-common()
+// Init all forms (it's only for prototyping and should be refactored when it will be ready to production)
+function initForms () {
+  search.initSearchForm()
+  tutorial.initTutorialForm()
+  project.initProjectForm()
+}
+
+initForms()
 
 $(document)
 
   // pjax
-  .on('pjax:success', common)
+  .on('pjax:success', initForms)
