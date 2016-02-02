@@ -9,17 +9,9 @@ html
         block sidebar
           include includes/sidebar/menu
           include includes/sidebar/search
-        
-
-
-        
 
       .content.js-Pjax
         block content
-      footer
-        a(href='/') Mainpage
-        != " &bull; "
-        a(href='/platforms') Platforms
-        != " &bull; "
-        a(href='/languages') Languages
+
+      include includes/footer
     script(src="/js/app.js")

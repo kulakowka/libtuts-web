@@ -1,5 +1,7 @@
 const _ = require('lodash')
 const express = require('express')
+const request = require('../utils/request')
+const async = require('async')
 const router = express.Router()
 
 var data = {
@@ -292,13 +294,25 @@ router.use((req, res, next) => {
 })
 
 router.get('/', (req, res, next) => {
-  var tutorials = dataTutorials
   var projects = dataPopularProjects
 
-  res.render('index', Object.assign({}, data, {
-    tutorials: tutorials,
-    projects: projects
-  }))
+  async.parallel({
+    languages (callback) {
+      request('/language?populate=no&limit=10', (err, response, body) => callback(err, body))
+    },
+    platforms (callback) {
+      request('/platform?populate=no', (err, response, body) => callback(err, body))
+    },
+    tutorials (callback) {
+      request('/tutorial?populate=no&sort=createdAt desc', (err, response, body) => callback(err, body))
+    }
+  }, (err, results) => {
+    if (err) return next(err)
+
+    res.render('index', Object.assign(results, {
+      projects: projects
+    }))
+  })
 })
 
 router.get('/auth/signin', (req, res, next) => {

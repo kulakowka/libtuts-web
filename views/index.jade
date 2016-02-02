@@ -1,28 +1,32 @@
 extends layout
 
 block content
-  h1 Main page
-
-  h4 Latest tutorials:
+  h1 Latest tutorials:
   each tutorial in tutorials
     .tutorial
       h3
         a(href="/tutorial/"+tutorial.id)= tutorial.title
 
-  h4 Popular projects:
-  each project in projects
-    .project
-      h3
-        a(href="/"+project.platform+"/"+project.slug)= project.name
+  h2 Popular projects:
+  .projectsGrid
+    each project in projects
+      .projectItem
+        h3
+          a(href="/"+project.platform+"/"+project.slug)= project.name
 
-  h4 Platforms:
-  each platform in platforms
-    h3
-      a(href=`/${platform.slug}`)= platform.name
+  h2 Platforms:
+  .platformsGrid
+    each platform in platforms
+      a.platformItem(href=`/${platform.slug}`)
+        img(src=`/images/pics/${platform.slug}.png` )
+        h3= platform.name
+        .projectsCount 100500 projects
 
-  h4 Languages:
-  each language in languages
-    h3
-      a(href=`/language/${language.slug}`)= language.name
-
+  h2 Languages:
+  .languagesGrid
+    each language in languages
+      a.languageItem(href=`/language/${language.slug}`)
+        img(src=`/images/pics/${language.slug}.png`)
+        h3= language.name
+        .projectsCount 100500 projects
 
