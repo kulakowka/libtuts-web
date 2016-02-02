@@ -1,0 +1,5 @@
+each comment in comments
+  .comment
+    .meta
+      a.createdBy(href="/users/"+comment.createdBy.username)= comment.createdBy.fullName
+    .content= comment.text

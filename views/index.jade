@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  h1 Main page
+
+  h4 Latest tutorials:
+  each tutorial in tutorials
+    .tutorial
+      h3
+        a(href="/tutorial/"+tutorial.id)= tutorial.title
+
+  h4 Popular projects:
+  each project in projects
+    .project
+      h3
+        a(href="/"+project.platform+"/"+project.slug)= project.name
+
+  h4 Platforms:
+  each platform in platforms
+    h3
+      a(href=`/${platform.slug}`)= platform.name
+
+  h4 Languages:
+  each language in languages
+    h3
+      a(href=`/language/${language.slug}`)= language.name
+
+

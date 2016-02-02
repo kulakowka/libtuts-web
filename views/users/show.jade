@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1= user.fullName
+  
+  h4 Tutorials contributed by user:
+  each tutorial in tutorials
+    .tutorial
+      h3
+        a(href="/tutorial/"+tutorial.id)= tutorial.title

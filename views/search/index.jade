@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+  h1 Search results
+
+  h4 Founded tutorials:
+  each tutorial in tutorials
+    .tutorial
+      h3
+        a(href="/tutorial/"+tutorial.id)= tutorial.title

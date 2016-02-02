@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h1
+    a(href="/platforms") Platforms
+    = "/"
+    = platform.name
+  
+
+  h4 Popular projects:
+  each project in projects
+    .project
+      h3
+        a(href="/"+project.platform+"/"+project.slug)= project.name
