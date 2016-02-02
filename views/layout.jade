@@ -5,30 +5,14 @@ html
     link(rel='stylesheet', href='/css/app.css')
   body
     .layout
-      if search
-        form.search.js-Pjax(action="/search" name="search")
-          h3 Find tutorials
-          .field
-            .label
-              label(for="search_keywords") Keywords:
-            input(id="search_keywords" name="keywords" placeholder="Keywords" value=search.keywords)
-          
-          .field
-            .label
-              label(for="search_language") Language:
-            select(id="search_language" name="languages" multiple placeholder="Languages")
-              each language in search.languages
-                option(value=language.slug selected=language.selected)= language.name
+      .sidebar
+        block sidebar
+          include includes/sidebar/menu
+          include includes/sidebar/search
+        
 
-          .field
-            .label
-              label(for="search_platform") Platform:
-            select(id="search_platform" name="platforms" multiple placeholder="Platfroms")
-              each platform in search.platforms
-                option(value=platform.slug selected=platform.selected)= platform.name
-              
-          .field
-            button(type="submit") search
+
+        
 
       .content.js-Pjax
         block content
