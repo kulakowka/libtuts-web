@@ -1,22 +1,22 @@
 'use strict'
 
-const request = require('../../utils/request')
+const fetchFromAPI = require('../../utils/fetcher').fetchFromAPI
 const async = require('async')
 
 // GET /
 module.exports = function index (req, res, next) {
   async.parallel({
     projects (callback) {
-      request('/project?populate=platform,language&limit=15&sort=createdAt asc', (err, response, body) => callback(err, body))
+      fetchFromAPI('/project?populate=platform,language&limit=2', callback)
     },
     languages (callback) {
-      request('/language?populate=no&limit=15&sort=createdAt asc', (err, response, body) => callback(err, body))
+      fetchFromAPI('/language?limit=2', callback)
     },
     platforms (callback) {
-      request('/platform?populate=no&limit=15&sort=createdAt asc', (err, response, body) => callback(err, body))
+      fetchFromAPI('/platform?limit=2', callback)
     },
     tutorials (callback) {
-      request('/tutorial?populate=no&sort=createdAt desc', (err, response, body) => callback(err, body))
+      fetchFromAPI('/tutorial?limit=2', callback)
     }
   }, (err, results) => {
     if (err) return next(err)

@@ -1,4 +1,7 @@
 .platformsGrid
-  each platform in platforms
-    include gridItem
+  if platforms
+    each platform in platforms
+      include gridItem
+  else
+    p platforms not found
     

@@ -1,4 +1,6 @@
 .projectsGrid
-  each project in projects
-    include gridItem
-    
+  if projects
+    each project in projects
+      include gridItem
+  else
+    p projects not found

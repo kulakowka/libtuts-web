@@ -1,3 +1,6 @@
 .tutorialsList
-  each tutorial in tutorials
-    include listItem
+  if tutorials
+    each tutorial in tutorials
+      include listItem
+  else
+    p tutorials not found
