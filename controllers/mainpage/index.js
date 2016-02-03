@@ -7,16 +7,16 @@ const async = require('async')
 module.exports = function index (req, res, next) {
   async.parallel({
     projects (callback) {
-      fetchFromAPI('/project?populate=platform,language&limit=2', callback)
+      fetchFromAPI('/project?populate=platform,language&limit=10', callback)
     },
     languages (callback) {
-      fetchFromAPI('/language?limit=2', callback)
+      fetchFromAPI('/language?limit=15', callback)
     },
     platforms (callback) {
-      fetchFromAPI('/platform?limit=2', callback)
+      fetchFromAPI('/platform?limit=15', callback)
     },
     tutorials (callback) {
-      fetchFromAPI('/tutorial?limit=2', callback)
+      fetchFromAPI('/tutorial?limit=10', callback)
     }
   }, (err, results) => {
     if (err) return next(err)
