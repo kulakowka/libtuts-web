@@ -35,7 +35,7 @@ block content
         each project, index in tutorial.projects
           if index
             = ", "
-          a(href="/"+project.platform+"/"+project.slug)= project.name
+          a(href="/"+project.platform.slug+"/"+project.slug)= project.name
       
     br
     hr

@@ -384,13 +384,14 @@ router.get('/project/new', (req, res, next) => {
 })
 
 router.get('/tutorial/:id', (req, res, next) => {
-  async.parallel({
-    tutorial (callback) {
-      request(`/tutorial/${req.params.id}?populate=createdBy,platforms,languages,projects,contributors`, (err, response, body) => callback(err, body))
-    }
-  }, (err, results) => {
+  async.waterfall([
+    (callback) => request(`/tutorial/${req.params.id}?populate=createdBy,platforms,projects,languages,contributors`, (err, response, body) => callback(err, body)),
+    (tutorial, callback) => request(`/project?where=${JSON.stringify({id: tutorial.projects.map(p => p.id)})}&populate=platform`, (err, response, body) => {
+      tutorial.projects = body
+      callback(err, {tutorial})
+    })
+  ], (err, results) => {
     if (err) return next(err)
-
     results.comments = []
     res.render('tutorials/show', results)
   })
@@ -445,13 +446,21 @@ router.get('/:platform', (req, res, next) => {
 })
 
 router.get('/:platform/:project', (req, res, next) => {
-  var platform = dataPlatform[req.params.platform]
-  var project = dataProject[req.params.project]
-  var tutorials = dataProjectTutorials[req.params.platform][req.params.project]
-  res.render('projects/show', {
-    platform: platform,
-    project: project,
-    tutorials: tutorials
+  async.parallel({
+    platform (callback) {
+      request(`/platform/${req.params.platform}?populate=no`, (err, response, body) => callback(err, body))
+    },
+    project (callback) {
+      request(`/project/${req.params.project}?populate=no`, (err, response, body) => callback(err, body))
+    }
+  }, (err, results) => {
+    if (err) return next(err)
+    console.log(`/tutorial?where=${JSON.stringify({id: results.project.tutorials})}&populate=no`)
+    request(`/tutorial?where=${JSON.stringify({id: results.project.tutorials})}&populate=no`, (err, response, body) => {
+      if (err) return next(err)
+      results.tutorials = body
+      res.render('projects/show', results)  
+    })
   })
 })
 
