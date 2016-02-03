@@ -3,7 +3,7 @@ extends ../layout
 block content
   h1 Sign up
   
-  form.signupForm(action="/auth/signin" method="post" name="signin")
+  form.signupForm(action="/auth/register" method="post" name="signin")
     .field
       input(type="email" name="email" placeholder="Email" required)
     .field

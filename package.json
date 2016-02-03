@@ -21,6 +21,7 @@
     "morgan": "~1.6.1",
     "pjax": "^0.1.4",
     "request": "^2.69.0",
+    "require-dir": "^0.3.0",
     "selectize": "^0.12.1",
     "serve-favicon": "~2.3.0",
     "stylus": "^0.53.0"
