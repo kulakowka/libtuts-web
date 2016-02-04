@@ -1,21 +1,27 @@
 'use strict'
 
 const notFoundError = require('../../utils/notFoundError')
-const request = require('../../utils/request')
-const async = require('async')
+const API = require('../../utils/api')
+const Platform = API.model('platform')
+const Project = API.model('project')
 
 // GET /:platform
 module.exports = function show (req, res, next) {
-  async.waterfall([
-    (callback) => request(`/platform/${req.params.platform}`, (err, response, body) => callback(err, body)),
-    (result, callback) => {
-      request(`/project?where=${JSON.stringify({platform: result.platform.id})}&populate=language,platform`, (err, response, projects) => {
-        callback(err, Object.assign(result, {projects}))
+  loadPlatform(req.params.platform).then(platform => {
+    if (!platform) return next(notFoundError('Platform not found'))
+    loadProjects(platform._id).then(projects => {
+      res.render('platforms/show', {
+        platform,
+        projects
       })
-    }
-  ], (err, results) => {
-    if (err) return next(err)
-    if (!results.platform) return next(notFoundError('Platform not found'))
-    res.render('platforms/show', results)
-  })
+    })
+  }).catch(next)
+}
+
+function loadPlatform (platform) {
+  return Platform.findOne(platform).select('_id,slug,name,projectsCount,tutorialsCount').exec()
+}
+
+function loadProjects (platform) {
+  return Project.find({platform}).populate('language,platform').limit(2).exec()
 }

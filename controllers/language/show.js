@@ -1,21 +1,27 @@
 'use strict'
 
 const notFoundError = require('../../utils/notFoundError')
-const request = require('../../utils/request')
-const async = require('async')
+const API = require('../../utils/api')
+const Language = API.model('language')
+const Project = API.model('project')
 
 // GET /language/:language
 module.exports = function show (req, res, next) {
-  async.waterfall([
-    (callback) => request(`/language/${req.params.language}`, (err, response, body) => callback(err, body)),
-    (result, callback) => {
-      request(`/project?where=${JSON.stringify({language: result.language.id})}&populate=language,platform`, (err, response, projects) => {
-        callback(err, Object.assign(result, {projects}))
+  loadLanguage(req.params.language).then(language => {
+    if (!language) return next(notFoundError('Language not found'))
+    loadProjects(language._id).then(projects => {
+      res.render('languages/show', {
+        language,
+        projects
       })
-    }
-  ], (err, results) => {
-    if (err) return next(err)
-    if (!results.language) return next(notFoundError('Language not found'))
-    res.render('languages/show', results)
-  })
+    })
+  }).catch(next)
+}
+
+function loadLanguage (language) {
+  return Language.findOne(language).select('_id,slug,name,projectsCount,tutorialsCount').exec()
+}
+
+function loadProjects (language) {
+  return Project.find({language}).populate('language,platform').limit(2).exec()
 }
