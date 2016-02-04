@@ -1,5 +1,6 @@
 each comment in comments
   .comment
     .meta
-      a.createdBy(href="/users/"+comment.createdBy.username)= comment.createdBy.fullName
-    .content= comment.text
+      if comment.creator
+        a.createdBy(href="/users/"+comment.creator.username)= comment.createdBy.fullName
+    .content!= marked(comment.content)

@@ -1,16 +1,15 @@
 'use strict'
 
-const fetchFromAPI = require('../../utils/fetcher').fetchFromAPI
-const async = require('async')
+const API = require('../../utils/api')
+const Platform = API.model('platform')
 
 // GET /platforms
 module.exports = function index (req, res, next) {
-  async.parallel({
-    platforms (callback) {
-      fetchFromAPI('/platform', callback)
-    }
-  }, (err, results) => {
-    if (err) return next(err)
-    res.render('platforms/index', results)
-  })
+  loadPlatforms().then(platforms => {
+    res.render('platforms/index', {platforms})
+  }).catch(next)
+}
+
+function loadPlatforms () {
+  return Platform.find().exec()
 }

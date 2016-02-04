@@ -3,7 +3,10 @@ extends ../layout
 block content
   article.tutorialShow
     h1= tutorial.title
-    .content!= marked(tutorial.content)
+    
+    if tutorial.content
+      .content!= marked(tutorial.content)
+
     .meta
       
       if tutorial.creator
@@ -52,7 +55,7 @@ block content
     hr
     h3 Questions and discussion
     
-    //- include ../comments/list
+    include ../comments/list
 
 
 

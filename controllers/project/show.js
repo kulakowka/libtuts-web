@@ -1,22 +1,27 @@
 'use strict'
 
 const notFoundError = require('../../utils/notFoundError')
-const request = require('../../utils/request')
-const async = require('async')
+const API = require('../../utils/api')
+const Project = API.model('project')
+const Tutorial = API.model('tutorial')
 
 // GET /:platform/:project
 module.exports = function show (req, res, next) {
-  async.waterfall([
-    (callback) => request(`/project/${req.params.platform}/${req.params.project}?populate=platform,language`, (err, response, body) => callback(err, body)),
-    (result, callback) => {
-      request(`/tutorial?where=${JSON.stringify({projects: [result.project.id]})}`, (err, response, tutorials) => {
-        callback(err, Object.assign(result, {tutorials}))
+  loadProject(req.params.platform, req.params.project).then(project => {
+    if (!project) return next(notFoundError('Project not found'))
+    return loadTutorials(project._id).then(tutorials => {
+      res.render('projects/show', {
+        project,
+        tutorials
       })
-    }
-  ], (err, results) => {
-    if (err) return next(err)
-    if (!results.project) return next(notFoundError('Project not found'))
-    // console.log(results)
-    res.render('projects/show', results)
-  })
+    })
+  }).catch(next)
+}
+
+function loadProject (platform, project) {
+  return Project.findOne(`${platform}/${project}`).populate('platform,language').exec()
+}
+
+function loadTutorials (project) {
+  return Tutorial.find({projects: {$in: [project]}}).exec()
 }

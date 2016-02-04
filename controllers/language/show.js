@@ -9,7 +9,7 @@ const Project = API.model('project')
 module.exports = function show (req, res, next) {
   loadLanguage(req.params.language).then(language => {
     if (!language) return next(notFoundError('Language not found'))
-    loadProjects(language._id).then(projects => {
+    return loadProjects(language._id).then(projects => {
       res.render('languages/show', {
         language,
         projects

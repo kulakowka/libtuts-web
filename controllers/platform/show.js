@@ -9,7 +9,7 @@ const Project = API.model('project')
 module.exports = function show (req, res, next) {
   loadPlatform(req.params.platform).then(platform => {
     if (!platform) return next(notFoundError('Platform not found'))
-    loadProjects(platform._id).then(projects => {
+    return loadProjects(platform._id).then(projects => {
       res.render('platforms/show', {
         platform,
         projects

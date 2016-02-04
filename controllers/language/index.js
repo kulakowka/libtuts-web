@@ -1,16 +1,15 @@
 'use strict'
 
-const fetchFromAPI = require('../../utils/fetcher').fetchFromAPI
-const async = require('async')
+const API = require('../../utils/api')
+const Language = API.model('language')
 
 // GET /languages
 module.exports = function index (req, res, next) {
-  async.parallel({
-    languages (callback) {
-      fetchFromAPI('/language', callback)
-    }
-  }, (err, results) => {
-    if (err) return next(err)
-    res.render('languages/index', results)
-  })
+  loadLanguages().then(languages => {
+    res.render('languages/index', {languages})
+  }).catch(next)
+}
+
+function loadLanguages () {
+  return Language.find().exec()
 }

@@ -49,7 +49,4 @@ block content
         = keyword
 
   h4 Popular tutorials:
-  each tutorial in tutorials
-    .tutorial
-      h3
-        a(href="/tutorial/"+tutorial.id)= tutorial.title
+  include ../tutorials/includes/list
