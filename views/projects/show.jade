@@ -8,32 +8,45 @@ block content
     = "/"
     = project.name
 
-  p= project.description
-  p
-    = "Homepage URL: "
-    a(href=project.homepageUrl)= project.homepageUrl
-  p
-    = "Repository URL: "
-    a(href=project.repositoryUrl)= project.repositoryUrl
-  p
-    = "Package manager URL: "
-    a(href=project.packageManagerUrl)= project.packageManagerUrl
-  p
-    = "Language: "
-    a(href=`/language/${project.language.slug}`)= project.language.name
-  p
-    = "Platform: "
-    a(href=`/${project.platform.slug}`)= project.platform.name
+  if project.description
+    p= project.description
+
+  if project.homepageUrl
+    p
+      = "Homepage URL: "
+      a(href=project.homepageUrl)= project.homepageUrl
+  
+  if project.repositoryUrl
+    p
+      = "Repository URL: "
+      a(href=project.repositoryUrl)= project.repositoryUrl
+    
+  if project.packageManagerUrl
+    p
+      = "Package manager URL: "
+      a(href=project.packageManagerUrl)= project.packageManagerUrl
+
+  if project.language
+    p
+      = "Language: "
+      a(href=`/language/${project.language.slug}`)= project.language.name
+
+  if project.platform
+    p
+      = "Platform: "
+      a(href=`/${project.platform.slug}`)= project.platform.name
+
   p
     = "Tutorials count: "
     = project.tutorialsCount
 
-  p
-    = "Keywords: "
-    each keyword, index in project.keywords
-      if index
-        = ", "
-      = keyword
+  if project.keywords
+    p
+      = "Keywords: "
+      each keyword, index in project.keywords
+        if index
+          = ", "
+        = keyword
 
   h4 Popular tutorials:
   each tutorial in tutorials

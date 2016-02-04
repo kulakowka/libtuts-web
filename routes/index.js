@@ -27,6 +27,7 @@ r
 .get('/search', c.search.index)
 .get('/suggest/keywords', c.suggest.keywords)
 .get('/suggest/projects', c.suggest.projects)
+.get('/tutorials', c.tutorial.index)
 .get('/tutorial/:id', c.tutorial.show)
 .get('/tutorial/new', c.tutorial.new)
 .get('/user/:username', c.user.show)

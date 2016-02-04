@@ -6,36 +6,47 @@ block content
     .content!= marked(tutorial.content)
     .meta
       
-      p
-        = "Created by: "
-        a(href=`/users/${tutorial.createdBy.username}`)= tutorial.createdBy.username
-      p
-        = 'Contributors: '
-        each contributor, index in tutorial.contributors
-          if index
-            = ", "
-          a(href="/users/"+contributor.username)= contributor.username
-      p
-        = "Source Url: "
-        a(href=tutorial.sourceUrl)= tutorial.sourceUrl
-      p
-        = 'Languages: '
-        each language, index in tutorial.languages
-          if index
-            = ", "
-          a(href=`/languages/${language.slug}`)= language.name
-      p
-        = 'Platforms: '
-        each platform, index in tutorial.platforms
-          if index
-            = ", "
-          a(href=`/${platform.slug}`)= platform.name
-      p
-        = 'Projects: '
-        each project, index in tutorial.projects
-          if index
-            = ", "
-          a(href="/"+project.platform.slug+"/"+project.slug)= project.name
+      if tutorial.creator
+        p
+          = "Created by: "
+          a(href=`/users/${tutorial.creator.username}`)= tutorial.createdBy.username
+      
+      if tutorial.contributors.length
+        p
+          = 'Contributors: '
+          each contributor, index in tutorial.contributors
+            if index
+              = ", "
+            a(href="/users/"+contributor.username)= contributor.username
+      
+      if tutorial.sourceUrl
+        p
+          = "Source Url: "
+          a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+      
+      if tutorial.languages.length
+        p
+          = 'Languages: '
+          each language, index in tutorial.languages
+            if index
+              = ", "
+            a(href=`/languages/${language.slug}`)= language.name
+
+      if tutorial.platforms.length
+        p
+          = 'Platforms: '
+          each platform, index in tutorial.platforms
+            if index
+              = ", "
+            a(href=`/${platform.slug}`)= platform.name
+          
+      if tutorial.projects.length
+        p
+          = 'Projects: '
+          each project, index in tutorial.projects
+            if index
+              = ", "
+            a(href="/"+project.platform.slug+"/"+project.slug)= project.name
       
     br
     hr
