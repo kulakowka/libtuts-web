@@ -5,6 +5,12 @@ block content
     a(href="/languages") Languages
     = "/"
     = language.name
-
+  p
+    = "Projects count: "
+    = language.projectsCount
+  p
+    = "Tutorials count: "
+    = language.tutorialsCount
+    
   h4 Popular projects:
   include ../projects/includes/grid

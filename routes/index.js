@@ -22,6 +22,7 @@ r
 .get('/language/:language', c.language.show)
 .get('/languages', c.language.index)
 .get('/platforms', c.platform.index)
+.get('/projects', c.project.index)
 .get('/project/new', c.project.new)
 .get('/search', c.search.index)
 .get('/suggest/keywords', c.suggest.keywords)

@@ -5,6 +5,12 @@ block content
     a(href="/platforms") Platforms
     = "/"
     = platform.name
-  
+  p
+    = "Projects count: "
+    = platform.projectsCount
+  p
+    = "Tutorials count: "
+    = platform.tutorialsCount
+    
   h4 Popular projects:
   include ../projects/includes/grid

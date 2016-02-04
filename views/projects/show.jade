@@ -4,10 +4,37 @@ block content
   h1
     a(href="/platforms") Platforms
     = "/"
-    a(href="/"+platform.slug)= platform.name
+    a(href="/"+project.platform.slug)= project.platform.name
     = "/"
     = project.name
-  
+
+  p= project.description
+  p
+    = "Homepage URL: "
+    a(href=project.homepageUrl)= project.homepageUrl
+  p
+    = "Repository URL: "
+    a(href=project.repositoryUrl)= project.repositoryUrl
+  p
+    = "Package manager URL: "
+    a(href=project.packageManagerUrl)= project.packageManagerUrl
+  p
+    = "Language: "
+    a(href=`/language/${project.language.slug}`)= project.language.name
+  p
+    = "Platform: "
+    a(href=`/language/${project.platform.slug}`)= project.platform.name
+  p
+    = "Tutorials count: "
+    = project.tutorialsCount
+
+  p
+    = "Keywords: "
+    each keyword, index in project.keywords
+      if index
+        = ", "
+      = keyword
+
   h4 Popular tutorials:
   each tutorial in tutorials
     .tutorial
