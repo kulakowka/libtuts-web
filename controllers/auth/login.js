@@ -3,8 +3,8 @@
 // POST /auth/login
 module.exports = function login (req, res, next) {
   req.session.user = {
-    username: 'tj',
-    fullName: 'TJ Holowaychuk'
+    username: req.body.identifier,
+    fullName: req.body.identifier
   }
   res.redirect('/')
 }
