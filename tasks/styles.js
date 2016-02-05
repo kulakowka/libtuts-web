@@ -4,6 +4,7 @@ const gulp = require('gulp')
 const size = require('gulp-size')
 const sourcemaps = require('gulp-sourcemaps')
 const stylus = require('gulp-stylus')
+const autoprefixer = require('gulp-autoprefixer')
 
 module.exports = function (config) {
   const dest = config.dest
@@ -14,6 +15,10 @@ module.exports = function (config) {
   return () => gulp.src(src)
     .pipe(sourcemaps.init())
     .pipe(stylus({compress}))
+    .pipe(autoprefixer({
+      browsers: ['last 2 versions'],
+      cascade: false
+    }))
     .pipe(sourcemaps.write('.'))
     .pipe(size({showFiles}))
     .pipe(gulp.dest(dest))

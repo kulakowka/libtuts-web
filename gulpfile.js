@@ -36,3 +36,5 @@ const config = {
 for (let task in tasks) {
   gulp.task(task, tasks[task](config[task]))
 }
+
+gulp.task('default', ['javascripts', 'styles', 'images'])
