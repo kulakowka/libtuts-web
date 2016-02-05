@@ -12,7 +12,14 @@
       script    : "bin/www",
       instances : 1,
       autorestart: true,
-      watch: false,
+      watch: true,
+      ignore_watch: [
+        "node_modules", 
+        "assets", 
+        "public",
+        "views",
+        ".git"
+      ],
       env: {
         API_BASE_URL: "http://localhost:3001",
         PORT: 3000
