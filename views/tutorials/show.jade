@@ -5,7 +5,7 @@ block content
     h1= tutorial.title
     
     if tutorial.content
-      .content!= marked(tutorial.content)
+      .content!= tutorial.contentHtml
 
     .meta
       
@@ -33,7 +33,7 @@ block content
           each language, index in tutorial.languages
             if index
               = ", "
-            a(href=`/languages/${language.slug}`)= language.name
+            a(href=`/language/${language.slug}`)= language.name
 
       if tutorial.platforms.length
         p

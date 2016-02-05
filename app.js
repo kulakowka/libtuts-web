@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser')
 const cookieSession = require('cookie-session')
 const serveStatic = require('serve-static')
 const bodyParser = require('body-parser')
-const browserify = require('browserify-middleware')
 const compression = require('compression')
 const helmet = require('helmet')
 const routes = require('./routes/index')
@@ -36,10 +35,8 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
-app.use(require('./utils/stylus'))
-app.get('/js/app.js', browserify(path.join(__dirname, 'assets/js/app.js')))
 app.use(serveStatic(__dirname + '/public', {
-  maxAge: '1d'
+  maxAge: '365d'
 }))
 app.use('/', routes)
 

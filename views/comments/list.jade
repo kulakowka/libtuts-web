@@ -3,4 +3,5 @@ each comment in comments
     .meta
       if comment.creator
         a.createdBy(href="/users/"+comment.creator.username)= comment.createdBy.fullName
-    .content!= marked(comment.content)
+    .content!= comment.contentHtml
+    //- .content!= comment.content

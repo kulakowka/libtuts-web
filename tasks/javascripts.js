@@ -9,6 +9,18 @@ const sourcemaps = require('gulp-sourcemaps')
 const gutil = require('gulp-util')
 const size = require('gulp-size')
 
+// browserify middleware
+// development:
+//   192 kb - gzip version
+//   716 kb - original file
+// production:
+//   30 kb - gzip version
+//   87 kb - original file
+
+// gulp
+//   86 kb - original file
+//   30 kb - gzip version
+
 module.exports = function (config) {
   const dest = config.dest
   const entries = config.src
@@ -28,3 +40,4 @@ module.exports = function (config) {
     .pipe(size({showFiles}))
     .pipe(gulp.dest(dest))
 }
+
