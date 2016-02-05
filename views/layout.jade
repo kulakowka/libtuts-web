@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/css/app.css')
+    link(rel='stylesheet', href=assetPath('css/app.css'))
   body(class=env)
     .layout
       .sidebar.js-Pjax
@@ -11,10 +11,11 @@ html
           include includes/sidebar/search
 
       .content.js-Pjax
+
         block content
 
       include includes/footer
-    script(src="/js/app.js")
+    script(src=assetPath('js/app.js'))
     script.
       // remove img with on load error
       (function(){function cb () {this.parentNode.removeChild(this)};for(var i=0,n=document.images,l=n.length;i<l;i++) n[i].onerror = cb}())

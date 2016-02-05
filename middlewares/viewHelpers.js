@@ -1,7 +1,7 @@
 'use strict'
 
 const marked = require('marked')
-
+const manifest = require('../public/rev-manifest')
 const highlightjs = require('highlight.js')
 
 marked.setOptions({
@@ -22,5 +22,9 @@ module.exports = function viewHelpersMiddleware (req, res, next) {
   res.locals.currentUser = req.session.user
   res.locals.marked = marked
   res.locals.env = req.app.get('env')
+  res.locals.assetPath = (path) => {
+    if (req.app.get('env') !== 'production') return `/${path}`
+    return `/${manifest[path] || path}`
+  }
   next()
 }
