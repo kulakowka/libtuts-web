@@ -4,7 +4,12 @@ const gulp = require('gulp')
 const requireDir = require('require-dir')
 const tasks = requireDir('./tasks', { recurse: true })
 
+
 const config = {
+  watch: {
+    javascripts: 'assets/js/**/*.js',
+    styles: 'assets/css/**/*.styl'
+  },
   javascripts: {
     filename: 'app.js',
     showFiles: true,
@@ -34,7 +39,8 @@ const config = {
 }
 
 for (let task in tasks) {
-  gulp.task(task, tasks[task](config[task]))
+  if (task === 'watch') gulp.task(task, ['javascripts', 'styles'], tasks[task](config[task]))
+  else gulp.task(task, tasks[task](config[task]))
 }
 
-gulp.task('default', ['javascripts', 'styles', 'images'])
+gulp.task('default', ['watch'])

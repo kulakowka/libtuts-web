@@ -5,6 +5,7 @@ const size = require('gulp-size')
 const sourcemaps = require('gulp-sourcemaps')
 const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
+const livereload = require('gulp-livereload')
 
 module.exports = function (config) {
   const dest = config.dest
@@ -22,4 +23,5 @@ module.exports = function (config) {
     .pipe(sourcemaps.write('.'))
     .pipe(size({showFiles}))
     .pipe(gulp.dest(dest))
+    .pipe(livereload())
 }
