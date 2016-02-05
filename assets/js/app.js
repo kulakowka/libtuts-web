@@ -3,12 +3,14 @@ var Pjax = require('pjax')
 require('selectize')
 
 // Configure pjax
-// new Pjax({
-//   // debug: true,
-//   analytics: function () {
-//     // window.ga('send', 'pageview', {page: document.location.pathname, title: document.title})
-//   }
-// })
+if ($('body.production').length) {
+  new Pjax({
+    // debug: true,
+    analytics: function () {
+      // window.ga('send', 'pageview', {page: document.location.pathname, title: document.title})
+    }
+  })
+}
 
 // Handlers
 var search = require('./handlers/search')
