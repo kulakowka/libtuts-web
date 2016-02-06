@@ -4,12 +4,12 @@ const gulp = require('gulp')
 const requireDir = require('require-dir')
 const tasks = requireDir('./tasks', { recurse: true })
 
-
 const config = {
   watch: {
     javascripts: 'assets/js/**/*.js',
     styles: 'assets/css/**/*.styl',
-    views: 'views/**/*.jade'
+    views: 'views/**/*.jade',
+    preTasks: ['javascripts', 'styles']
   },
   javascripts: {
     filename: 'app.js',
@@ -35,13 +35,15 @@ const config = {
     src: [
       'public/css/app.css',
       'public/js/app.js'
-    ]
+    ],
+    preTasks: ['javascripts', 'styles']
   }
 }
 
 for (let task in tasks) {
-  if (task === 'watch') gulp.task(task, ['javascripts', 'styles'], tasks[task](config[task]))
-  else gulp.task(task, tasks[task](config[task]))
+  let pre = config[task].preTasks || []
+  config[task].isProduction = process.env.NODE_ENV === 'production'
+  gulp.task(task, pre, tasks[task](config[task]))
 }
 
 gulp.task('default', ['watch'])

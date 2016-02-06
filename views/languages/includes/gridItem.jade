@@ -1,7 +1,7 @@
 .languageItem
-  a(href=`/language/${language.slug}`)
+  a(href=language.webUrl)
     img(src=`/images/pics/${language.slug}.png`)
   h3
-    a(href=`/language/${language.slug}`)= language.name
+    a(href=language.webUrl)= language.name
   .meta
-    a(href=`/language/${language.slug}`) #{language.projectsCount} projects
+    a(href=language.webUrl) #{language.projectsCount} projects

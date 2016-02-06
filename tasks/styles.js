@@ -7,22 +7,24 @@ const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
 const livereload = require('gulp-livereload')
 const plumber = require('gulp-plumber')
+const gulpif = require('gulp-if')
 
 module.exports = function (config) {
   const dest = config.dest
   const src = config.src
   const showFiles = config.showFiles
   const compress = config.compress
+  const isDev = !config.isProduction
 
   return () => gulp.src(src)
     .pipe(plumber())
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(isDev, sourcemaps.init()))
     .pipe(stylus({compress}))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false
     }))
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(isDev, sourcemaps.write('.')))
     .pipe(size({showFiles}))
     .pipe(gulp.dest(dest))
     .pipe(livereload())

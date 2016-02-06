@@ -9,27 +9,27 @@ const sourcemaps = require('gulp-sourcemaps')
 const gutil = require('gulp-util')
 const size = require('gulp-size')
 const livereload = require('gulp-livereload')
-// const plumber = require('gulp-plumber')
+const gulpif = require('gulp-if')
 
 module.exports = function (config) {
   const dest = config.dest
   const entries = config.src
   const showFiles = config.showFiles
   const filename = config.filename
+  const isDev = !config.isProduction
 
   var b = browserify({entries})
 
   return () => b.bundle()
     .pipe(source(filename))
     .pipe(buffer())
-    .pipe(sourcemaps.init())
+    .pipe(gulpif(isDev, sourcemaps.init()))
         // .pipe(plumber())
         // Add transformation tasks to the pipeline here.
-        .pipe(uglify())
+        .pipe(gulpif(!isDev, uglify()))
         .on('error', gutil.log)
-    .pipe(sourcemaps.write('.'))
+    .pipe(gulpif(isDev, sourcemaps.write('.')))
     .pipe(size({showFiles}))
     .pipe(gulp.dest(dest))
     .pipe(livereload())
 }
-

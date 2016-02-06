@@ -19,7 +19,7 @@ module.exports = function show (req, res, next) {
 }
 
 function loadProject (platform, project) {
-  return Project.findOne(`${platform}/${project}`).populate('platform,language').exec()
+  return Project.findOne({platform, project}).populate('platform,language').exec()
 }
 
 function loadTutorials (project) {
