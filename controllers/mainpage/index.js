@@ -22,17 +22,17 @@ module.exports = function index (req, res, next) {
 }
 
 function loadProjects () {
-  return Project.find().limit(6).exec()
+  return Project.find().limit(24).exec()
 }
 
 function loadLanguages () {
-  return Language.find().limit(9).exec()
+  return Language.find().exec()
 }
 
 function loadPlatforms () {
-  return Platform.find().limit(9).exec()
+  return Platform.find().limit(24).exec()
 }
 
 function loadTutorials () {
-  return Tutorial.find().limit(5).exec()
+  return Tutorial.find().limit(20).exec()
 }
