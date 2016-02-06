@@ -1,20 +1,19 @@
 header.js-Pjax
   .inner
     nav.mainMenu
-      a(href='/' class=(url === '/' ? 'active' : '') ) Mainpage
-      a(href='/tutorials' class=(url === '/tutorials' ? 'active' : '') ) Tutorials
-      a(href='/projects' class=(url === '/projects' ? 'active' : '') ) Projects
-      a(href='/platforms' class=(url === '/platforms' ? 'active' : '') ) Platforms
-      a(href='/languages' class=(url === '/languages' ? 'active' : '') ) Languages
-      
+      +activeLink('/', 'Mainpage')
+      +activeLink('/tutorials', 'Tutorials')
+      +activeLink('/projects', 'Projects')
+      +activeLink('/platforms', 'Platforms')
+      +activeLink('/languages', 'Languages')
 
     if currentUser
       nav.userMenu
-        a(href=`/users/${currentUser.username}` class=(url === `/users/${currentUser.username}` ? 'active' : '') )= currentUser.fullName
-        a(href='/tutorial/new' class=(url === '/tutorial/new' ? 'active' : '') ) Add tutorial
-        a(href='/project/new' class=(url === '/project/new' ? 'active' : '') ) Add project
+        +activeLink(`/users/${currentUser.username}`, currentUser.fullName)
+        +activeLink('/tutorial/new', 'Add tutorial')
+        +activeLink('/project/new', 'Add project')
         a(href=`/auth/logout`) Logout
     else
       nav.guestMenu
-        a(href='/auth/signin' class=(url === '/auth/signin' ? 'active' : '') ) Sign in
-        a(href='/auth/signup' class=(url === '/auth/signup' ? 'active' : '') ) Sign up
+        +activeLink('/auth/signin', 'Sign in')
+        +activeLink('/auth/signup', 'Sign up')
