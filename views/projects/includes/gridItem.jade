@@ -1,11 +1,10 @@
 .projectItem
   h3
-    a(href="/"+project.platform.slug+"/"+project.slug)= project.name
-  //- p= project.description
+    a(href=project.webUrl)= project.name
   .meta 
-    a(href="/"+project.platform.slug+"/"+project.slug) #{project.tutorialsCount} tutorials
+    a(href=project.webUrl) #{project.tutorialsCount} tutorials
     = " · "
-    a(href=`/${project.platform.slug}`)= project.platform.name
+    a(href=`/${project.platform}`)= project.platform
     = " · "
-    a(href=`/language/${project.language.slug}`)= project.language.name
+    a(href=`/language/${project.language}`)= project.language
     
