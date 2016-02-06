@@ -1,31 +1,19 @@
-nav
-  ul
-    li
+header
+  .inner
+    nav.mainMenu
       a(href='/') Mainpage
-    li
       a(href='/tutorials') Tutorials
-    li
       a(href='/platforms') Platforms
-    li 
       a(href='/languages') Languages
-    li
       a(href='/projects') Projects
 
-  if currentUser
-    ul
-      li
-        b
-          a(href=`/users/${currentUser.username}`)= currentUser.fullName
-      li
+    if currentUser
+      nav.userMenu
+        a(href=`/users/${currentUser.username}`)= currentUser.fullName
         a(href='/tutorial/new') Add tutorial
-      li
         a(href='/project/new') Add project
-      li
         a(href=`/auth/logout`) Logout
-  else
-    ul
-      li
+    else
+      nav.guestMenu
         a(href='/auth/signin') Sign in
-      li
         a(href='/auth/signup') Sign up
-br

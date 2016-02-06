@@ -1,16 +1,7 @@
 extends ../layout
 
 block content
-  h1
-    a(href="/languages") Languages
-    = "/"
-    = language.name
-  p
-    = "Projects count: "
-    = language.projectsCount
-  p
-    = "Tutorials count: "
-    = language.tutorialsCount
-    
-  h4 Popular projects:
-  include ../projects/includes/grid
+  include includes/about
+  section
+    h2 Popular #{language.name} projects:
+    include ../projects/includes/grid

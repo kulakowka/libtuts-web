@@ -8,5 +8,8 @@ module.exports = function (config) {
     livereload.listen()
     gulp.watch(config.javascripts, ['javascripts'])
     gulp.watch(config.styles, ['styles'])
+    gulp.watch(config.views, () => {
+      livereload.reload()
+    })
   }
 }

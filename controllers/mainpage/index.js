@@ -17,7 +17,7 @@ module.exports = function index (req, res, next) {
     tutorials: async.asyncify(loadTutorials)
   }, (err, results) => {
     if (err) return next(err)
-    res.render('index', results)
+    res.render('mainpage/index', results)
   })
 }
 

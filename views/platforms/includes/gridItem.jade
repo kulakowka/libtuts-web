@@ -1,4 +1,7 @@
-a.platformItem(href=`/${platform.slug}`)
-  img(src=`/images/pics/${platform.slug}.png` )
-  h3= platform.name
-  .projectsCount #{platform.projectsCount} projects
+.platformItem
+  a(href=`/${platform.slug}`)
+    img(src=`/images/pics/${platform.slug}.png` )
+  h3
+    a(href=`/${platform.slug}`)= platform.name
+  .meta
+    a(href=`/${platform.slug}`) #{platform.projectsCount} projects

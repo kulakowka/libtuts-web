@@ -4,14 +4,11 @@ html
     title= title
     link(rel='stylesheet', href=assetPath('css/app.css'))
   body(class=env)
+    include includes/header
     .layout
       .sidebar.js-Pjax
         block sidebar
-          include includes/sidebar/menu
-          include includes/sidebar/search
-
       .content.js-Pjax
-
         block content
 
       include includes/footer

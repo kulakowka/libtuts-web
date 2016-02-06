@@ -23,5 +23,5 @@ function loadPlatform (platform) {
 }
 
 function loadProjects (platform) {
-  return Project.find({platform}).populate('language,platform').limit(2).exec()
+  return Project.find({platform}).populate('language,platform').exec()
 }

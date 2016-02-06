@@ -51,11 +51,10 @@ block content
               = ", "
             a(href="/"+project.platform.slug+"/"+project.slug)= project.name
       
-    br
-    hr
-    h3 Questions and discussion
     
-    include ../comments/list
+    section
+      h2 Questions and discussion
+      include ../comments/list
 
 
 

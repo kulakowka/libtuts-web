@@ -6,6 +6,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
 const livereload = require('gulp-livereload')
+const plumber = require('gulp-plumber')
 
 module.exports = function (config) {
   const dest = config.dest
@@ -14,6 +15,7 @@ module.exports = function (config) {
   const compress = config.compress
 
   return () => gulp.src(src)
+    .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(stylus({compress}))
     .pipe(autoprefixer({

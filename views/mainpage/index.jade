@@ -1,0 +1,21 @@
+extends ../layout
+
+block sidebar
+  include ../includes/sidebar/about
+  include ../includes/sidebar/search
+block content
+  .mainpage
+    section
+      h2 Latest tutorials:
+      include ../tutorials/includes/list
+    section
+      h2 Popular projects:
+      include ../projects/includes/grid
+    section
+      h2 Platforms:
+      include ../platforms/includes/grid
+    section
+      h2 Languages:
+      include ../languages/includes/grid
+      
+

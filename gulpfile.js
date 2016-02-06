@@ -8,7 +8,8 @@ const tasks = requireDir('./tasks', { recurse: true })
 const config = {
   watch: {
     javascripts: 'assets/js/**/*.js',
-    styles: 'assets/css/**/*.styl'
+    styles: 'assets/css/**/*.styl',
+    views: 'views/**/*.jade'
   },
   javascripts: {
     filename: 'app.js',

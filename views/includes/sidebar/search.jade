@@ -1,24 +1,16 @@
-if search
-  form.search.js-Pjax(action="/search" name="search")
-    h3 Find tutorials
-    .field
-      .label
-        label(for="search_keywords") Keywords:
-      input(id="search_keywords" name="keywords" placeholder="Keywords" value=search.keywords)
-    
-    .field
-      .label
-        label(for="search_language") Language:
-      select(id="search_language" name="languages" multiple placeholder="Languages")
-        each language in search.languages
-          option(value=language.slug selected=language.selected)= language.name
-
-    .field
-      .label
-        label(for="search_platform") Platform:
-      select(id="search_platform" name="platforms" multiple placeholder="Platfroms")
-        each platform in search.platforms
-          option(value=platform.slug selected=platform.selected)= platform.name
-        
-    .field
-      button(type="submit") search
+if search  
+  section.search
+    h2 Find tutorials
+    form(action="/search" name="search")
+      .field
+        input(name="keywords" placeholder="Keywords" value=search.keywords)
+      .field
+        select(name="languages" multiple placeholder="Languages")
+          each language in search.languages
+            option(value=language.slug selected=language.selected)= language.name
+      .field
+        select(name="platforms" multiple placeholder="Platfroms")
+          each platform in search.platforms
+            option(value=platform.slug selected=platform.selected)= platform.name
+      .field
+        button(type="submit") search

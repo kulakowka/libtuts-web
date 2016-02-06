@@ -9,6 +9,7 @@ const sourcemaps = require('gulp-sourcemaps')
 const gutil = require('gulp-util')
 const size = require('gulp-size')
 const livereload = require('gulp-livereload')
+// const plumber = require('gulp-plumber')
 
 module.exports = function (config) {
   const dest = config.dest
@@ -22,6 +23,7 @@ module.exports = function (config) {
     .pipe(source(filename))
     .pipe(buffer())
     .pipe(sourcemaps.init())
+        // .pipe(plumber())
         // Add transformation tasks to the pipeline here.
         .pipe(uglify())
         .on('error', gutil.log)
