@@ -2,19 +2,58 @@ var $ = require('jquery')
 
 module.exports.initSearchForm = function initSearchForm () {
   // Selectize
-  $('form[name="search"] select[name="languages"]').selectize({
-    delimiter: ',',
-    create: false
+  $('form[name="search"] select[name="l"]').selectize({
+    create: false,
+    persist: false,
+    maxItems: 10,
+    load: function (query, callback) {
+      if (!query.length) return callback()
+
+      $.ajax({
+        url: '/suggest/languages',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+          q: query
+        },
+        error: function () {
+          callback()
+        },
+        success: function (res) {
+          callback(res)
+        }
+      })
+    }
   })
 
-  $('form[name="search"] select[name="platforms"]').selectize({
-    delimiter: ',',
-    create: false
+  $('form[name="search"] select[name="p"]').selectize({
+    persist: false,
+    maxItems: 10,
+    create: false,
+    load: function (query, callback) {
+      if (!query.length) return callback()
+
+      $.ajax({
+        url: '/suggest/platforms',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+          q: query
+        },
+        error: function () {
+          callback()
+        },
+        success: function (res) {
+          callback(res)
+        }
+      })
+    }
   })
 
-  $('form[name="search"] input[name="keywords"]').selectize({
+  $('form[name="search"] input[name="k"]').selectize({
     delimiter: ',',
     persist: false,
+    maxItems: 10,
     create: function (input) {
       return {
         value: input.toLowerCase(),
@@ -25,7 +64,7 @@ module.exports.initSearchForm = function initSearchForm () {
       if (!query.length) return callback()
 
       $.ajax({
-        url: '/suggest/search',
+        url: '/suggest/keywords',
         type: 'GET',
         dataType: 'json',
         data: {
@@ -35,7 +74,7 @@ module.exports.initSearchForm = function initSearchForm () {
           callback()
         },
         success: function (res) {
-          callback(res.keywords)
+          callback(res)
         }
       })
     }

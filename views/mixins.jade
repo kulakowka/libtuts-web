@@ -1,2 +1,3 @@
 mixin activeLink(href, name)
-  a(class=(url === href ? `active ${attributes.class}` : `${attributes.class}`) href=href)= name
+  - var _class = attributes.class || ''
+  a(class=(url === href ? `active ${_class}` : `${_class}`) href=href)= name

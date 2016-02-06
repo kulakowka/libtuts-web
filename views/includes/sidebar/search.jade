@@ -3,14 +3,14 @@ if search
     h2 Find tutorials
     form(action="/search" name="search")
       .field
-        input(name="keywords" placeholder="Keywords" value=search.keywords)
+        input(name="k" placeholder="Keywords" value=search.k)
       .field
-        select(name="languages" multiple placeholder="Languages")
-          each language in search.languages
-            option(value=language.slug selected=language.selected)= language.name
+        select(name="l" multiple placeholder="Languages")
+          each language in search.l
+            option(value=language selected)= language
       .field
-        select(name="platforms" multiple placeholder="Platfroms")
-          each platform in search.platforms
-            option(value=platform.slug selected=platform.selected)= platform.name
+        select(name="p" multiple placeholder="Platfroms")
+          each platform in search.p
+            option(value=platform selected)= platform
       .field
         button.btn.btn-action(type="submit") search
