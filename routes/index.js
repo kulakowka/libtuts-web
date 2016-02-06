@@ -7,11 +7,11 @@ const c = rd('../controllers', {recurse: true})
 const m = rd('../middlewares', {recurse: true})
 
 r
-.use(m.searchFormData)
 .use(m.viewHelpers)
 
 r
-.get('/', c.mainpage.index)
+.get('/', m.searchFormData, c.mainpage.index)
+.get('/search', m.searchFormData, c.search.index)
 .get('/auth/logout', c.auth.logout)
 .get('/auth/recover', c.auth.recover)
 .get('/auth/resend', c.auth.resend)
@@ -24,7 +24,7 @@ r
 .get('/platforms', c.platform.index)
 .get('/projects', c.project.index)
 .get('/project/new', c.project.new)
-.get('/search', c.search.index)
+
 .get('/suggest/keywords', c.suggest.keywords)
 .get('/suggest/languages', c.suggest.languages)
 .get('/suggest/platforms', c.suggest.platforms)

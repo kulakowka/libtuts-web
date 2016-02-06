@@ -1,19 +1,19 @@
 header.js-Pjax
   .inner
     nav.mainMenu
-      +activeLink('/', 'Mainpage')
-      +activeLink('/tutorials', 'Tutorials')
-      +activeLink('/projects', 'Projects')
-      +activeLink('/platforms', 'Platforms')
-      +activeLink('/languages', 'Languages')
+      a(href='/') Mainpage
+      a(href='/tutorials') Tutorials
+      a(href='/projects') Projects
+      a(href='/platforms') Platforms
+      a(href='/languages') Languages
 
     if currentUser
       nav.userMenu
-        +activeLink(`/users/${currentUser.username}`, currentUser.fullName)
-        +activeLink('/tutorial/new', 'Add tutorial')
-        +activeLink('/project/new', 'Add project')
+        a(href=`/users/${currentUser.username}`)= currentUser.fullName
+        a(href='/tutorial/new') Add tutorial
+        a(href='/project/new') Add project
         a(href=`/auth/logout`) Logout
     else
       nav.guestMenu
-        +activeLink('/auth/signin', 'Sign in')
-        +activeLink('/auth/signup', 'Sign up')
+        a(href='/auth/signin') Sign in
+        a(href='/auth/signup') Sign up
