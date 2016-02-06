@@ -11,5 +11,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadProjects () {
-  return Project.find().populate('platform,language').limit(10).exec()
+  return Project.find().exec()
 }

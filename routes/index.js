@@ -19,7 +19,7 @@ r
 .get('/auth/signup', c.auth.signup)
 .post('/auth/login', c.auth.login)
 .post('/auth/register', c.auth.register)
-.get('/language/:language', c.language.show)
+.get('/language/:name', c.language.show)
 .get('/languages', c.language.index)
 .get('/platforms', c.platform.index)
 .get('/projects', c.project.index)
@@ -31,7 +31,7 @@ r
 .get('/tutorial/:id', c.tutorial.show)
 .get('/tutorial/new', c.tutorial.new)
 .get('/user/:username', c.user.show)
-.get('/:platform', c.platform.show)
-.get('/:platform/:project', c.project.show)
+.get('/:name', c.platform.show)
+.get('/:platform/:name', c.project.show)
 
 module.exports = r

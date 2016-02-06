@@ -1,0 +1,41 @@
+.aboutProject
+  h1= project.name
+  if project.description
+    .description= project.description
+
+  section
+    h2 About #{project.name}
+    dl.meta
+      if project.homepageUrl
+        dt Homepage:
+        dd 
+          a(href=project.homepageUrl)= project.homepageUrl
+
+      if project.repositoryUrl
+        dt Repository:
+        dd
+          a(href=project.repositoryUrl)= project.repositoryUrl
+        
+      if project.packageManagerUrl
+        dt Registry:
+        dd
+          a(href=project.packageManagerUrl)= project.packageManagerUrl
+
+      if project.language
+        dt Language:
+        dd
+          a(href=`/language/${project.language}`)= project.language
+
+      if project.platform
+        dt Platform:
+        dd
+          a(href=`/${project.platform}`)= project.platform
+
+      
+      if project.keywords
+        dt Keywords:
+        dd
+          each keyword, index in project.keywords
+            if index
+              = ", "
+            a(href="/search?keywords="+keyword)= keyword

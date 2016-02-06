@@ -1,10 +1,5 @@
-each comment in comments
-  .commentItem(id=`comment_${comment._id}`)
-    .content!= comment.contentHtml
-    .meta
-      if comment.creator
-        a(href="/users/"+comment.creator.username)= comment.createdBy.fullName
-      a(href="/users/kulakowka") kulakowka
-      = " · "
-      a(href=`#comment_${comment._id}`) 3 hours ago
-    
+if comments.length 
+  each comment in comments
+    include item
+else
+  p No comments... No questions...

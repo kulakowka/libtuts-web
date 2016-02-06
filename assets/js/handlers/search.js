@@ -3,10 +3,12 @@ var $ = require('jquery')
 module.exports.initSearchForm = function initSearchForm () {
   // Selectize
   $('form[name="search"] select[name="languages"]').selectize({
+    delimiter: ',',
     create: false
   })
 
   $('form[name="search"] select[name="platforms"]').selectize({
+    delimiter: ',',
     create: false
   })
 
@@ -15,8 +17,8 @@ module.exports.initSearchForm = function initSearchForm () {
     persist: false,
     create: function (input) {
       return {
-        value: input,
-        text: input
+        value: input.toLowerCase(),
+        text: input.toLowerCase()
       }
     },
     load: function (query, callback) {

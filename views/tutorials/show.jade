@@ -29,33 +29,42 @@ block content
           dd
             a(href=tutorial.sourceUrl)= tutorial.sourceUrl
         
-        if tutorial.languages.length
+        if tutorial.languages
           dt Languages:
           dd
             each language, index in tutorial.languages
               if index
                 = ", "
-              a(href=`/language/${language.slug}`)= language.name
+              a(href=`/language/${language}`)= language
 
-        if tutorial.platforms.length
+        if tutorial.platforms
           dt Platforms:
           dd
             each platform, index in tutorial.platforms
               if index
                 = ", "
-              a(href=`/${platform.slug}`)= platform.name
+              a(href=`/${platform}`)= platform
             
-        if tutorial.projects.length
+        if tutorial.projects
           dt Projects:
           dd
             each project, index in tutorial.projects
               if index
                 = ", "
-              a(href="/"+project.platform.slug+"/"+project.slug)= project.name
+              a(href="/"+project.platform+"/"+project.name)= project.name
 
-    section
-      h2 Questions and discussion
-      include ../comments/list
+        if tutorial.keywords
+          dt Keywords:
+          dd
+            each keyword, index in tutorial.keywords
+              if index
+                = ", "
+              a(href="/search?keywords="+keyword)= keyword
+
+    if comments
+      section
+        h2 Questions and discussion
+        include ../comments/list
 
 
 

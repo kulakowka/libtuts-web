@@ -1,7 +1,7 @@
 .platformItem
-  a(href=`/${platform.slug}`)
-    img(src=`/images/pics/${platform.slug}.png` )
+  a(href=platform.webUrl)
+    img(src=`/images/pics/${platform.name}.png` )
   h3
-    a(href=`/${platform.slug}`)= platform.name
+    a(href=platform.webUrl)= platform.name
   .meta
-    a(href=`/${platform.slug}`) #{platform.projectsCount} projects
+    a(href=platform.webUrl) #{platform.projectsCount} projects

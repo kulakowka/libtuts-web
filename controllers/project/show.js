@@ -5,23 +5,24 @@ const API = require('../../utils/api')
 const Project = API.model('project')
 const Tutorial = API.model('tutorial')
 
-// GET /:platform/:project
+const async = require('async')
+
+// GET /:platform/:name
 module.exports = function show (req, res, next) {
-  loadProject(req.params.platform, req.params.project).then(project => {
-    if (!project) return next(notFoundError('Project not found'))
-    return loadTutorials(project._id).then(tutorials => {
-      res.render('projects/show', {
-        project,
-        tutorials
-      })
-    })
-  }).catch(next)
+  async.parallel({
+    project: async.asyncify(() => loadProject(req.params)),
+    tutorials: async.asyncify(() => loadTutorials(req.params))
+  }, (err, results) => {
+    if (err) return next(err)
+    if (!results.project) return next(notFoundError('Project not found'))
+    res.render('projects/show', results)
+  })
 }
 
-function loadProject (platform, project) {
-  return Project.findOne({platform, project}).populate('platform,language').exec()
+function loadProject (condition) {
+  return Project.findOne(condition).exec()
 }
 
-function loadTutorials (project) {
-  return Tutorial.find({projects: {$in: [project]}}).exec()
+function loadTutorials (condition) {
+  return Tutorial.find({projects: {$elemMatch: condition}}).exec()
 }

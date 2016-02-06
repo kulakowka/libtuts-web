@@ -1,52 +1,7 @@
 extends ../layout
 
 block content
-  h1
-    a(href="/platforms") Platforms
-    = "/"
-    a(href="/"+project.platform.slug)= project.platform.name
-    = "/"
-    = project.name
-
-  if project.description
-    p= project.description
-
-  if project.homepageUrl
-    p
-      = "Homepage URL: "
-      a(href=project.homepageUrl)= project.homepageUrl
-  
-  if project.repositoryUrl
-    p
-      = "Repository URL: "
-      a(href=project.repositoryUrl)= project.repositoryUrl
-    
-  if project.packageManagerUrl
-    p
-      = "Package manager URL: "
-      a(href=project.packageManagerUrl)= project.packageManagerUrl
-
-  if project.language
-    p
-      = "Language: "
-      a(href=`/language/${project.language.slug}`)= project.language.name
-
-  if project.platform
-    p
-      = "Platform: "
-      a(href=`/${project.platform.slug}`)= project.platform.name
-
-  p
-    = "Tutorials count: "
-    = project.tutorialsCount
-
-  if project.keywords
-    p
-      = "Keywords: "
-      each keyword, index in project.keywords
-        if index
-          = ", "
-        = keyword
+  include includes/about
   section
     h2 #{project.name} tutorials:
     include ../tutorials/includes/list

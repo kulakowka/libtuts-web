@@ -5,23 +5,24 @@ const API = require('../../utils/api')
 const Language = API.model('language')
 const Project = API.model('project')
 
-// GET /language/:language
+const async = require('async')
+
+// GET /language/:name
 module.exports = function show (req, res, next) {
-  loadLanguage(req.params.language).then(language => {
-    if (!language) return next(notFoundError('Language not found'))
-    return loadProjects(language._id).then(projects => {
-      res.render('languages/show', {
-        language,
-        projects
-      })
-    })
-  }).catch(next)
+  async.parallel({
+    language: async.asyncify(() => loadLanguage(req.params.name)),
+    projects: async.asyncify(() => loadProjects(req.params.name))
+  }, (err, results) => {
+    if (err) return next(err)
+    if (!results.language) return next(notFoundError('Language not found'))
+    res.render('languages/show', results)
+  })
 }
 
-function loadLanguage (language) {
-  return Language.findOne(language).select('_id,slug,name,projectsCount,tutorialsCount').exec()
+function loadLanguage (name) {
+  return Language.findOne({name}).exec()
 }
 
 function loadProjects (language) {
-  return Project.find({language}).populate('language,platform').exec()
+  return Project.find({language}).exec()
 }
