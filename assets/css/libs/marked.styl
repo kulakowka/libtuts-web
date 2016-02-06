@@ -1,12 +1,26 @@
 code
   background: rgba(0,0,0,0.03)
   border: 0px solid rgba(0,0,0,0.14)
-  font-size: fontsize3
+  font-size: 15px
   line-height: 1.4em
   padding: 0.1em 0.4em
   border-radius: 5px
-  color: #333333
+  color: #333
   font-family Consolas, "Liberation Mono", Menlo, Courier, monospace !important
+  position relative
+  &:before
+    content attr(class)
+    display block
+    position absolute
+    overflow hidden
+    text-indent -32px
+    top 0
+    right 5px
+    font-weight bold
+    color rgba(0,0,0,0.3)
+    font-size 0.8em
+    
+    
 
 pre
   background: rgba(0,0,0,0.03)

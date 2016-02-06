@@ -5,13 +5,12 @@ html
     link(rel='stylesheet', href=assetPath('css/app.css'))
   body(class=env)
     include includes/header
-    .layout
-      .sidebar.js-Pjax
+    .layout.js-Pjax
+      .sidebar
         block sidebar
-      .content.js-Pjax
+      .content
         block content
-
-      include includes/footer
+    include includes/footer
     script(src=assetPath('js/app.js'))
     script.
       // remove img with on load error

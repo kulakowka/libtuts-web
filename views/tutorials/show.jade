@@ -1,57 +1,58 @@
 extends ../layout
 
 block content
-  article.tutorialShow
+  article.tutorial
     h1= tutorial.title
     
     if tutorial.contentHtml
       .content!= tutorial.contentHtml
 
-    .meta
-      
-      if tutorial.creator
-        p
-          = "Created by: "
-          a(href=`/users/${tutorial.creator.username}`)= tutorial.createdBy.username
-      
-      if tutorial.contributors.length
-        p
-          = 'Contributors: '
-          each contributor, index in tutorial.contributors
-            if index
-              = ", "
-            a(href="/users/"+contributor.username)= contributor.username
-      
-      if tutorial.sourceUrl
-        p
-          = "Source Url: "
-          a(href=tutorial.sourceUrl)= tutorial.sourceUrl
-      
-      if tutorial.languages.length
-        p
-          = 'Languages: '
-          each language, index in tutorial.languages
-            if index
-              = ", "
-            a(href=`/language/${language.slug}`)= language.name
+    section
+      h2 Meta information
+      dl.meta
+        
+        if tutorial.creator
+          dt Created by:
+          dd 
+            a(href=`/users/${tutorial.creator.username}`)= tutorial.createdBy.username
+        
+        if tutorial.contributors.length
+          dt Contributors:
+          dd
+            each contributor, index in tutorial.contributors
+              if index
+                = ", "
+              a(href="/users/"+contributor.username)= contributor.username
+        
+        if tutorial.sourceUrl
+          dt Source URL:
+          dd
+            a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+        
+        if tutorial.languages.length
+          dt Languages:
+          dd
+            each language, index in tutorial.languages
+              if index
+                = ", "
+              a(href=`/language/${language.slug}`)= language.name
 
-      if tutorial.platforms.length
-        p
-          = 'Platforms: '
-          each platform, index in tutorial.platforms
-            if index
-              = ", "
-            a(href=`/${platform.slug}`)= platform.name
-          
-      if tutorial.projects.length
-        p
-          = 'Projects: '
-          each project, index in tutorial.projects
-            if index
-              = ", "
-            a(href="/"+project.platform.slug+"/"+project.slug)= project.name
-      
-    
+        if tutorial.platforms.length
+          dt Platforms:
+          dd
+            each platform, index in tutorial.platforms
+              if index
+                = ", "
+              a(href=`/${platform.slug}`)= platform.name
+            
+        if tutorial.projects.length
+          dt Projects:
+          dd
+            each project, index in tutorial.projects
+              if index
+                = ", "
+              a(href="/"+project.platform.slug+"/"+project.slug)= project.name
+
     section
       h2 Questions and discussion
       include ../comments/list

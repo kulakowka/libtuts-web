@@ -1,7 +1,10 @@
 each comment in comments
-  .comment
+  .commentItem(id=`comment_${comment._id}`)
+    .content!= comment.contentHtml
     .meta
       if comment.creator
-        a.createdBy(href="/users/"+comment.creator.username)= comment.createdBy.fullName
-    .content!= comment.contentHtml
-    //- .content!= comment.content
+        a(href="/users/"+comment.creator.username)= comment.createdBy.fullName
+      a(href="/users/kulakowka") kulakowka
+      = " · "
+      a(href=`#comment_${comment._id}`) 3 hours ago
+    

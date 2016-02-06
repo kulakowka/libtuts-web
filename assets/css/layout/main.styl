@@ -1,24 +1,27 @@
 body 
   padding 0px
   margin 0
-  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
   color #222
   background white
+
+body,  
+input,
+select,
+textarea,
+button
+  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
 
 * 
   box-sizing border-box
 
 a
   text-decoration none
-  color deepskyblue
+  color mediumblue
   &:hover
     text-decoration underline
+  &:visited
+    color mediumorchid
 
-input,
-select,
-textarea,
-button
-  font 14px "Lucida Grande", Helvetica, Arial, sans-serif
 html, 
 body
   min-height 100%
@@ -30,24 +33,14 @@ html
 .layout
   max-width 1024px
   position relative
-  //outline 1px solid yellow
   margin auto
-  overflow hidden
   min-height 100%
-footer
-  background #eee
-  position absolute
-  right 0px
-  bottom 0px
-  left 0px
-  padding 20px
-
-.layout > .content
-  width 700px
-  padding-bottom 150px
-.sidebar
-  position absolute
-  right 0px
-  top 0px
-  width 300px
-  
+  > .content
+    width 700px
+    padding-bottom 150px
+  > .sidebar
+    position absolute
+    right 0px
+    top 0px
+    width 300px
+    
