@@ -5,6 +5,7 @@ const requireDir = require('require-dir')
 const tasks = requireDir('./tasks', { recurse: true })
 
 const config = {
+  clean: ['public'],
   watch: {
     javascripts: 'assets/js/**/*.js',
     styles: 'assets/css/**/*.styl',
@@ -36,7 +37,7 @@ const config = {
       'public/css/app.css',
       'public/js/app.js'
     ],
-    preTasks: ['javascripts', 'styles']
+    preTasks: ['images', 'javascripts', 'styles']
   }
 }
 
