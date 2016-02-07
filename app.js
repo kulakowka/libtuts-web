@@ -10,6 +10,12 @@ const compression = require('compression')
 const helmet = require('helmet')
 const routes = require('./routes/index')
 
+var pmx = require('pmx').init({
+  custom_probes : true, // Auto expose JS Loop Latency and HTTP req/s as custom metrics
+  network       : true, // Network monitoring at the application level
+  ports         : true  // Shows which ports your app is listening on (default: false)
+})
+
 var app = express()
 
 app.set('trust proxy', 1) // trust first proxy

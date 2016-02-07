@@ -6,11 +6,15 @@ const tasks = requireDir('./tasks', { recurse: true })
 
 const config = {
   clean: ['public'],
+  assets: {
+    showFiles: true,
+    dest: 'public',
+    src: 'assets/*'
+  },
   watch: {
     javascripts: 'assets/js/**/*.js',
     styles: 'assets/css/**/*.styl',
-    views: 'views/**/*.jade',
-    preTasks: ['javascripts', 'styles']
+    views: 'views/**/*.jade'
   },
   javascripts: {
     filename: 'app.js',
@@ -37,7 +41,7 @@ const config = {
       'public/css/app.css',
       'public/js/app.js'
     ],
-    preTasks: ['images', 'javascripts', 'styles']
+    preTasks: ['assets', 'images', 'javascripts', 'styles']
   }
 }
 
@@ -47,4 +51,4 @@ for (let task in tasks) {
   gulp.task(task, pre, tasks[task](config[task]))
 }
 
-gulp.task('default', ['watch'])
+gulp.task('default', ['assets', 'images', 'javascripts', 'styles', 'watch'])
