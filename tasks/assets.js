@@ -9,8 +9,8 @@ module.exports = function (config) {
   const src = config.src
   const showFiles = config.showFiles
 
-  return () => gulp.src(src, {base})
-    .pipe(newer(base))
+  return () => gulp.src(src)
+    // .pipe(newer(base))
     .pipe(size({showFiles}))
     .pipe(gulp.dest(base))
 }
