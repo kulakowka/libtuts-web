@@ -4,4 +4,6 @@
   h3
     a(href=platform.webUrl)= platform.name
   .meta
+    a(href=platform.webUrl title=numeral(platform.tutorialsCount).format('0,0')) #{numeral(platform.tutorialsCount).format('0a')} tutorials
+    = " · "
     a(href=platform.webUrl title=numeral(platform.projectsCount).format('0,0')) #{numeral(platform.projectsCount).format('0a')} projects
