@@ -11,5 +11,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadProjects () {
-  return Project.find().limit(200).sort('-rank').exec()
+  return Project.find().sort('-rank').exec()
 }

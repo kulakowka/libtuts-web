@@ -23,7 +23,7 @@ const config = {
     src: 'assets/js/app.js'
   },
   styles: {
-    compress: false,
+    compress: true,
     showFiles: true,
     dest: 'public/css',
     src: 'assets/css/app.styl'
