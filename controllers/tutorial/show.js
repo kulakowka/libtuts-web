@@ -20,11 +20,9 @@ module.exports = function show (req, res, next) {
 }
 
 function loadTutorial (_id) {
-  console.log('loadTutorial', _id)
   return Tutorial.findOne({_id}).exec()
 }
 
 function loadComments (tutorial) {
-  return Comment.find({tutorial}).populate('creator').exec()
+  return Comment.find({tutorial}).sort('-createdAt').populate('creator').exec()
 }
-

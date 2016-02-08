@@ -24,5 +24,5 @@ function loadProject (condition) {
 }
 
 function loadTutorials (condition) {
-  return Tutorial.find({projects: {$elemMatch: condition}}).exec()
+  return Tutorial.find({projects: {$elemMatch: condition}}).sort('-createdAt').exec()
 }

@@ -23,9 +23,9 @@ function loadLanguage (name) {
 }
 
 function loadProjects (language) {
-  return API.model('project').find({language}).exec()
+  return API.model('project').find({language}).sort('-rank').exec()
 }
 
 function loadTutorials (language) {
-  return API.model('tutorial').find({languages: {$in: [language]}}).exec()
+  return API.model('tutorial').find({languages: {$in: [language]}}).sort('-createdAt').exec()
 }

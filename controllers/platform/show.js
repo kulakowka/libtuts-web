@@ -24,5 +24,5 @@ function loadPlatform (name) {
 }
 
 function loadProjects (platform) {
-  return Project.find({platform}).exec()
+  return Project.find({platform}).sort('-rank').exec()
 }
