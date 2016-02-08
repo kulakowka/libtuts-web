@@ -2,8 +2,6 @@
 
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
-const Language = API.model('language')
-const Project = API.model('project')
 
 const async = require('async')
 
@@ -11,7 +9,8 @@ const async = require('async')
 module.exports = function show (req, res, next) {
   async.parallel({
     language: async.asyncify(() => loadLanguage(req.params.name)),
-    projects: async.asyncify(() => loadProjects(req.params.name))
+    projects: async.asyncify(() => loadProjects(req.params.name)),
+    tutorials: async.asyncify(() => loadTutorials(req.params.name))
   }, (err, results) => {
     if (err) return next(err)
     if (!results.language) return next(notFoundError('Language not found'))
@@ -20,9 +19,13 @@ module.exports = function show (req, res, next) {
 }
 
 function loadLanguage (name) {
-  return Language.findOne({name}).exec()
+  return API.model('language').findOne({name}).exec()
 }
 
 function loadProjects (language) {
-  return Project.find({language}).exec()
+  return API.model('project').find({language}).exec()
+}
+
+function loadTutorials (language) {
+  return API.model('tutorial').find({languages: {$in: [language]}}).exec()
 }

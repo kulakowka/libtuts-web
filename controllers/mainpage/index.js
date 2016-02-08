@@ -22,7 +22,7 @@ module.exports = function index (req, res, next) {
 }
 
 function loadProjects () {
-  return Project.find().limit(24).exec()
+  return Project.find().sort('-rank').limit(24).exec()
 }
 
 function loadLanguages () {
@@ -34,5 +34,5 @@ function loadPlatforms () {
 }
 
 function loadTutorials () {
-  return Tutorial.find().limit(20).exec()
+  return Tutorial.find().sort('-createdAt').limit(20).exec()
 }

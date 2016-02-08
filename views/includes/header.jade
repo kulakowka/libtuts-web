@@ -9,7 +9,7 @@ header.js-Pjax
 
     if currentUser
       nav.userMenu
-        a(href=`/users/${currentUser.username}`)= currentUser.fullName
+        a(href=`/user/${currentUser.username}`)= currentUser.fullName
         a(href='/tutorial/new') Add tutorial
         a(href='/project/new') Add project
         a(href=`/auth/logout`) Logout

@@ -10,7 +10,11 @@ block content
     section
       h2 Meta information
       dl.meta
-        
+        dt Created at:
+          dd= moment(tutorial.createdAt).fromNow()
+        dt Updated at:
+          dd= moment(tutorial.updatedAt).fromNow()
+
         if tutorial.creator
           dt Created by:
           dd 

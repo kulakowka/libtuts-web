@@ -13,20 +13,20 @@ form.tutorialForm(action="/tutorials" method="post" name="tutorial")
   
   .field
     select(name="languages" multiple placeholder="Languages")
-      each language in languages
-        option(value=language.id selected=language.selected)= language.name
+      each language in tutorial.languages
+        option(value=language selected)= language
 
   .field
     select(name="platforms" multiple placeholder="Platfroms")
-      each platform in platforms
-        option(value=platform.id selected=platform.selected)= platform.name
+      each platform in tutorial.platforms
+        option(value=platform selected)= platform
 
   .field
     select(name="projects" multiple placeholder="Project")
-      each project in projects
-        option(value=project.id selected=project.selected) #{project.platform}/#{project.name}
+      each project in tutorial.projects
+        option(value=project.id selected) #{project.platform}/#{project.name}
     small Find project by name or paste a link to a repository that is not in our database
       
   .field
-    button(type="submit" name="publish") Publish
-    button(type="submit" name="draft") Draft
+    button.btn.btn-action(type="submit" name="publish") Publish
+    button.btn(type="submit" name="draft") Save draft

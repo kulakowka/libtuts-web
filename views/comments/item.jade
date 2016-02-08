@@ -5,5 +5,5 @@
       a(href="/users/"+comment.creator.username)= comment.createdBy.fullName
     a(href="/users/kulakowka") kulakowka
     = " · "
-    a(href=`#comment_${comment._id}`) 3 hours ago
-  
+    a(href=`#comment_${comment._id}`)= moment(comment.createdAt).fromNow()
+    

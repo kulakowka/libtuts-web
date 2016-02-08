@@ -3,5 +3,8 @@ extends ../layout
 block content
   include includes/about
   section
+    h2 #{language.name} tutorials:
+    include ../tutorials/includes/list
+  section
     h2 Popular #{language.name} projects:
     include ../projects/includes/grid
