@@ -2,7 +2,7 @@
   h3
     a(href=project.webUrl)= project.name
   .meta 
-    a(href=project.webUrl) #{project.tutorialsCount} tutorials
+    a(href=project.webUrl title=numeral(project.tutorialsCount).format('0,0')) #{numeral(project.tutorialsCount).format('0a')} tutorials
     = " · "
     a(href=`/${project.platform}`)= project.platform
     = " · "
