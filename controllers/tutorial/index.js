@@ -11,5 +11,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadTutorials () {
-  return Tutorial.find().sort('-createdAt').limit(10).exec()
+  return Tutorial.find().sort('-createdAt').limit(100).exec()
 }

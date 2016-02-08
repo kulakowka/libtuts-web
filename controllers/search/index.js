@@ -25,5 +25,5 @@ function loadTutorials (query) {
     ]}
   }
 
-  return Tutorial.find(where).sort('-createdAt').exec()
+  return Tutorial.find(where).sort('-createdAt').limit(100).exec()
 }

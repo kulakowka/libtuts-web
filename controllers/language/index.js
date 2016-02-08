@@ -11,5 +11,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadLanguages () {
-  return Language.find().exec()
+  return Language.find().limit(200).exec()
 }

@@ -11,5 +11,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadPlatforms () {
-  return Platform.find().exec()
+  return Platform.find().limit(200).exec()
 }
