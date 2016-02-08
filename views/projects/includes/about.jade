@@ -2,7 +2,20 @@
   h1= project.name
   if project.description
     .description= project.description
-
+  
+  .shields
+    a(href='https://libtuts.com/npm/' + project.name)
+      img(src='/shield' + project.webUrl + '.svg' alt="Tutorials")
+    if project.platform === 'npm'
+      = " "
+      a(href='https://www.npmjs.org/package/' + project.name)
+        img(src='http://img.shields.io/npm/v/' + project.name + '.svg' alt='NPM version')
+      = " "
+      a(href='https://david-dm.org/kulakowka/rest-api-request')
+        img(src='https://david-dm.org/kulakowka/rest-api-request.svg' alt="Dependency Status")
+      = " "
+      a(href='https://david-dm.org/kulakowka/tracer#info=devDependencies')
+        img(src='https://david-dm.org/kulakowka/rest-api-request/dev-status.svg' alt="devDependency Status")
   section
     h2 About #{project.name}
     dl.meta

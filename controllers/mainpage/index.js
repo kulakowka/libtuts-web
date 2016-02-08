@@ -26,11 +26,11 @@ function loadProjects () {
 }
 
 function loadLanguages () {
-  return Language.find().exec()
+  return Language.find().sort('-projectsCount').exec()
 }
 
 function loadPlatforms () {
-  return Platform.find().limit(24).exec()
+  return Platform.find().sort('-projectsCount').limit(24).exec()
 }
 
 function loadTutorials () {

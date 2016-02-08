@@ -32,6 +32,8 @@ r
 .get('/tutorial/new', c.tutorial.new)
 .get('/tutorial/:id', c.tutorial.show)
 
+.get('/shield/:platform/:name.svg', c.shield.show)
+
 .get('/user/:username', c.user.show)
 .get('/:name', c.platform.show)
 .get('/:platform/:name', c.project.show)

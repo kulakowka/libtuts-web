@@ -11,5 +11,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadPlatforms () {
-  return Platform.find().limit(200).exec()
+  return Platform.find().sort('-projectsCount').limit(200).exec()
 }
