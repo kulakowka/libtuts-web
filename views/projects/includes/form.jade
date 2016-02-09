@@ -1,6 +1,22 @@
-form.projectForm(action="/projects" method="post" name="project")
+form.defaultForm.projectForm(action="/projects" method="post" name="project")
+  
   .field
-    input(name="name" placeholder="Name" value=project.name)
+    .row.row-l
+      .col.col-3
+        .field
+          select.js-default-select(name="language" placeholder="Language")
+            each language in languages
+              option(value=language.name )= language.name
+      .col.col-2
+        .field
+          select.js-default-select(name="platform" placeholder="Platfrom")
+            each platform in platforms
+              option(value=platform.name )= platform.name  
+      .col.col-5
+        .field
+          input(type="text" name="name" placeholder="Name" value=project.name)
+  .field
+    textarea(name="description" rows="3" placeholder="Description" value=project.description)
   
   .field
     input(type="url" name="homepageUrl" placeholder="Homepage URL" value=project.homepageUrl)
@@ -11,21 +27,17 @@ form.projectForm(action="/projects" method="post" name="project")
   .field
     input(type="url" name="packageManagerUrl" placeholder="Package manager URL" value=project.packageManagerUrl)
   
-  .field
-    textarea(name="description" rows="3" placeholder="Description" value=project.description)
+  
   
   .field
-    input(name="keywords" placeholder="Keywords" value=project.keywords)
+    select(name="keywords[]" multiple placeholder="Keywords")
+      if project.keywords
+        each keyword in project.keywords
+          option(value=keyword selected)= keyword
   
-  .field
-    select(name="language" placeholder="Language")
-      each language in languages
-        option(value=language.id selected=language.selected)= language.name
+  
 
-  .field
-    select(name="platform" placeholder="Platfrom")
-      each platform in platforms
-        option(value=platform.id selected=platform.selected)= platform.name
+  
     
   .field
-    button(type="submit") Add project
+    button.btn.btn-action(type="submit") Add project

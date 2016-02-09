@@ -1,26 +1,24 @@
 'use strict'
 
-var data = {
-  project: {},
-  languages: [
-    {id: '2313', slug: 'javascript', name: 'Java Script'},
-    {id: '2314', slug: 'go', name: 'GO'},
-    {id: '2315', slug: 'ruby', name: 'Ruby'}
-  ],
-  platforms: [
-    {id: '2366', slug: 'npm', name: 'NPM'},
-    {id: '2367', slug: 'go', name: 'GO'},
-    {id: '2368', slug: 'rubygems', name: 'Rubygems'}
-  ],
-  projects: [
-    {platform: 'npm', slug: 'redux', name: 'Redux'},
-    {platform: 'npm', slug: 'express', name: 'Express.js'},
-    {platform: 'rubygems', slug: 'device', name: 'Device'},
-    {platform: 'rubygems', slug: 'activerecord', name: 'Active Record'}
-  ]
+const async = require('async')
+const API = require('../../utils/api')
+
+// GET /project/new
+module.exports = function newAction (req, res, next) {
+  async.parallel({
+    languages: async.asyncify(loadLanguages),
+    platforms: async.asyncify(loadPlatforms)
+  }, (err, results) => {
+    if (err) return next(err)
+    results.project = {}
+    res.render('projects/new', results)
+  })
 }
 
-// GET /tutorial/new
-module.exports = function newAction (req, res, next) {
-  res.render('projects/new', data)
+function loadLanguages () {
+  return API.model('language').find().sort('-projectsCount').limit(200).exec()
+}
+
+function loadPlatforms () {
+  return API.model('platform').find().sort('-projectsCount').limit(200).exec()
 }

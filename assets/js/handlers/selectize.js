@@ -1,6 +1,7 @@
 var $ = require('jquery')
 
 module.exports.initSelectize = function initTutorialForm () {
+  // Select one or more languages
   $('select[name="languages[]"]').selectize({
     create: false,
     persist: false,
@@ -8,6 +9,7 @@ module.exports.initSelectize = function initTutorialForm () {
     load: loadData('/suggest/languages')
   })
 
+  // Select one ore more platforms
   $('select[name="platforms[]"]').selectize({
     persist: false,
     maxItems: 10,
