@@ -19,7 +19,10 @@ module.exports = function (config) {
   return () => gulp.src(src)
     .pipe(plumber())
     .pipe(gulpif(isDev, sourcemaps.init()))
-    .pipe(stylus({compress}))
+    .pipe(stylus({
+      'include css': true,
+      compress
+    }))
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
       cascade: false

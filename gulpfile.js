@@ -12,9 +12,9 @@ const config = {
     src: 'assets/*'
   },
   watch: {
-    javascripts: 'assets/js/**/*.js',
-    styles: 'assets/css/**/*.styl',
-    views: 'views/**/*.jade'
+    javascripts: 'assets/js/**/*',
+    styles: 'assets/css/**/*',
+    views: 'views/**/*'
   },
   javascripts: {
     filename: 'app.js',

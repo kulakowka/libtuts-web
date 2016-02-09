@@ -6,7 +6,7 @@ form.defaultForm.tutorialForm(action="/tutorials" method="post" name="tutorial")
     input(type="url" name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl)
   
   .field
-    textarea.js-default-textarea(name="content" rows="5" placeholder="Content" value=tutorial.content)
+    textarea(name="content" rows="5" placeholder="Content" value=tutorial.content)
     
   .field
     select.js-default-select(name="languages[]" multiple placeholder="Specify the programming languages")
