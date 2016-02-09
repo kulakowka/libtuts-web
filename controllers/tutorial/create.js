@@ -11,6 +11,7 @@ module.exports = function index (req, res, next) {
 
 function createTutorial (body) {
   if (body.projects) body.projects = getProjects(body.projects)
+  console.log(body.projects)
   return API.model('tutorial').create(body).exec()
 }
 
@@ -30,7 +31,7 @@ function getProject (path) {
   let data = path.split('/')
 
   return {
-    name: data[1],
-    platform: data[2]
+    name: data[2],
+    platform: data[1]
   }
 }

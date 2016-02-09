@@ -35,7 +35,7 @@ block content
               dd
                 a(href=tutorial.sourceUrl)= tutorial.sourceUrl
             
-            if tutorial.languages
+            if tutorial.languages.length
               dt Languages:
               dd
                 each language, index in tutorial.languages
@@ -43,7 +43,7 @@ block content
                     = ", "
                   a(href=`/language/${language}`)= language
 
-            if tutorial.platforms
+            if tutorial.platforms.length
               dt Platforms:
               dd
                 each platform, index in tutorial.platforms
@@ -51,7 +51,7 @@ block content
                     = ", "
                   a(href=`/${platform}`)= platform
                 
-            if tutorial.projects
+            if tutorial.projects.length
               dt Projects:
               dd
                 each project, index in tutorial.projects
@@ -59,7 +59,7 @@ block content
                     = ", "
                   a(href="/"+project.platform+"/"+project.name)= project.name
 
-            if tutorial.keywords
+            if tutorial.keywords.length
               dt Keywords:
               dd
                 each keyword, index in tutorial.keywords

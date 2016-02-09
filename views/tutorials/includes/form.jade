@@ -9,28 +9,22 @@ form.defaultForm.tutorialForm(action="/tutorials" method="post" name="tutorial")
     textarea.js-default-textarea(name="content" rows="5" placeholder="Content" value=tutorial.content)
     
   .field
-    select(name="languages[]" multiple placeholder="Specify the programming languages")
-      if tutorial.languages
-        each language in tutorial.languages
+    select.js-default-select(name="languages[]" multiple placeholder="Specify the programming languages")
+      if languages
+        each language in languages
           option(value=language.name )= language.name
 
   .field
-    select(name="platforms[]" multiple placeholder="Select the related platforms")
-      if tutorial.platforms
-        each platform in tutorial.platforms
+    select.js-default-select(name="platforms[]" multiple placeholder="Select the related platforms")
+      if platforms
+        each platform in platforms
           option(value=platform.name )= platform.name
 
   .field
     select(name="projects[]" multiple placeholder="Specify the projects referred to in the tutorial")
-      if tutorial.projects
-        each project in tutorial.projects
-          option(value=project.id selected) #{project.platform}/#{project.name}
 
   .field
     select(name="keywords[]" multiple placeholder="Keywords")
-      if tutorial.keywords
-        each keyword in tutorial.keywords
-          option(value=keyword selected) #{keyword}
       
   .field.buttons
     button.btn.btn-action(type="submit" name="publish") Publish
