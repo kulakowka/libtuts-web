@@ -2,16 +2,13 @@
 
 const API = require('../../utils/api')
 
-const Language = API.model('language')
+// GET /suggest/languages
+module.exports = (req, res) => {
+  loadItems().then(res.json.bind(res)).catch(_ => res.json([]))
+}
 
-let data = []
-loadLanguages().then(languages => {
-  data = languages.map(language => ({text: language.name, value: language.name})) 
-})
-
-// GET /suggest/keywords
-module.exports = (req, res) => res.json(data)
-
-function loadLanguages (q) {
-  return Language.find().limit(100).exec()
+function loadItems (q) {
+  return API.model('language').find()
+        .limit(20).exec()
+        .then(items => items.map(item => ({text: item.name, value: item.name})))
 }

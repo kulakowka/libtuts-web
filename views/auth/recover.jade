@@ -1,15 +1,7 @@
 extends ../layout
 
 block content
-  h1 Recover password
-    
-  form.recoverPasswordForm(action="/auth/recover" method="post" name="recoverPassword")
-    .field
-      input(type="email" name="email" placeholder="Email" required)
-    .field
-      button(type="submit") Send password to email
-    .links
-      a(href="/auth/signin") Sign in
-      = " or "
-      a(href="/auth/signup") sign up
-
+  .row
+    .col.col-4
+      h1 Recover password
+      include includes/recoverPasswordForm

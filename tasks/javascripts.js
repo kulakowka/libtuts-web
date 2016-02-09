@@ -8,6 +8,7 @@ const uglify = require('gulp-uglify')
 const sourcemaps = require('gulp-sourcemaps')
 const gutil = require('gulp-util')
 const size = require('gulp-size')
+// const plumber = require('gulp-plumber')
 const livereload = require('gulp-livereload')
 const gulpif = require('gulp-if')
 

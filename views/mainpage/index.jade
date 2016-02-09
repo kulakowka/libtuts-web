@@ -1,21 +1,24 @@
 extends ../layout
-
-block sidebar
-  include ../includes/sidebar/about
-  include ../includes/sidebar/search
+  
 block content
-  section
-    h2 Newest interesting tutorials for programmers around the world
-    include ../tutorials/includes/list
-  .wideSections
-    section
-      h2 Find tutorials for popular open-source projects
-      include ../projects/includes/grid
-    section
-      h2 We collect tutorials for projects from all popular platforms
-      include ../platforms/includes/grid
-    section
-      h2 Choose your favorite programming language and start learning
-      include ../languages/includes/grid
-      
+  .row.row-l
+    .col.col-7
+      section
+        h2 Newest interesting tutorials for programmers around the world
+        include ../tutorials/includes/list
 
+    .col.col-3
+      include ../includes/sidebar/about
+      include ../includes/sidebar/search
+
+  .row.row-l
+    .col
+      section
+        h2 Find tutorials for popular open-source projects
+        include ../projects/includes/grid
+      section
+        h2 We collect tutorials for projects from all popular platforms
+        include ../platforms/includes/grid
+      section
+        h2 Choose your favorite programming language and start learning
+        include ../languages/includes/grid

@@ -11,6 +11,8 @@ r
 
 r
 .get('/', m.searchFormData, c.mainpage.index)
+.get('/ui', m.render('ui/index'))
+.post('/ui', c.ui.create)
 .get('/search', m.searchFormData, c.search.index)
 .get('/auth/logout', c.auth.logout)
 .get('/auth/recover', c.auth.recover)
@@ -28,7 +30,10 @@ r
 .get('/suggest/keywords', c.suggest.keywords)
 .get('/suggest/languages', c.suggest.languages)
 .get('/suggest/platforms', c.suggest.platforms)
+.get('/suggest/projects', c.suggest.projects)
+
 .get('/tutorials', c.tutorial.index)
+.post('/tutorials', c.tutorial.create)
 .get('/tutorial/new', c.tutorial.new)
 .get('/tutorial/:id', c.tutorial.show)
 

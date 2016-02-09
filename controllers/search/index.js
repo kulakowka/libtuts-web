@@ -19,9 +19,9 @@ function loadTutorials (query) {
 
   if (keywords || languages || platforms) {
     where = {$or: [
-      {keywords: {$in: keywords ? keywords.split(',') : []}},
-      {languages: {$in: languages ? languages.split(',') : []}},
-      {platforms: {$in: platforms ? platforms.split(',') : []}}
+      {keywords: {$in: keywords}},
+      {languages: {$in: languages}},
+      {platforms: {$in: platforms}}
     ]}
   }
 

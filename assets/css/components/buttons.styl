@@ -4,19 +4,44 @@
   border 0
   padding 0 1.2em
   margin 0
-  background grey
-  color #fff
   border-radius 4px
-  line-height 30px
+  line-height 40px
   display inline-block
+  vertical-align middle
+  font-weight bold
   cursor pointer
+  border 1px solid grey
+  background transparent 
+  color grey
+  white-space nowrap
+  &:hover 
+    background grey
+    color white
+    text-decoration none
   &:focus
     outline none
+
+.btn:disabled
+  opacity 0.3
+  cursor not-allowed
+  background inherit
+  color inherit
+    
     
 
 // Action button
 .btn.btn-action
-  background deeppink
-  color white
+  border 1px solid deeppink
+  background transparent 
+  color deeppink
   &:hover 
-    background deepskyblue  
+    background deeppink
+    color white
+.btn.btn-loading
+  &:after
+    content: '...'
+  
+
+
+
+

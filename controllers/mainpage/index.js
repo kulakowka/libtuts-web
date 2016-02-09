@@ -1,12 +1,7 @@
 'use strict'
 
-const API = require('../../utils/api')
-const Language = API.model('language')
-const Project = API.model('project')
-const Platform = API.model('platform')
-const Tutorial = API.model('tutorial')
-
 const async = require('async')
+const API = require('../../utils/api')
 
 // GET /
 module.exports = function index (req, res, next) {
@@ -22,17 +17,17 @@ module.exports = function index (req, res, next) {
 }
 
 function loadProjects () {
-  return Project.find().sort('-rank').limit(24).exec()
+  return API.model('project').find().sort('-rank').limit(24).exec()
 }
 
 function loadLanguages () {
-  return Language.find().sort('-projectsCount').exec()
+  return API.model('language').find().sort('-projectsCount').exec()
 }
 
 function loadPlatforms () {
-  return Platform.find().sort('-projectsCount').limit(24).exec()
+  return API.model('platform').find().sort('-projectsCount').limit(24).exec()
 }
 
 function loadTutorials () {
-  return Tutorial.find().sort('-createdAt').limit(20).exec()
+  return API.model('tutorial').find().sort('-createdAt').limit(10).exec()
 }

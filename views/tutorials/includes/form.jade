@@ -1,32 +1,37 @@
-form.tutorialForm(action="/tutorials" method="post" name="tutorial")
+form.defaultForm.tutorialForm(action="/tutorials" method="post" name="tutorial")
   .field
-    input(name="title" placeholder="Title" value=tutorial.title)
+    input(type="text" name="title" placeholder="Title" value=tutorial.title required)
   
   .field
-    input(name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl)
+    input(type="url" name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl)
   
   .field
-    textarea(name="content" rows="5" placeholder="Content" value=tutorial.content)
-  
+    textarea.js-default-textarea(name="content" rows="5" placeholder="Content" value=tutorial.content)
+    
   .field
-    input(name="keywords" placeholder="Keywords" value=tutorial.keywords)
-  
-  .field
-    select(name="languages" multiple placeholder="Languages")
-      each language in tutorial.languages
-        option(value=language selected)= language
+    select(name="languages[]" multiple placeholder="Specify the programming languages")
+      if tutorial.languages
+        each language in tutorial.languages
+          option(value=language.name )= language.name
 
   .field
-    select(name="platforms" multiple placeholder="Platfroms")
-      each platform in tutorial.platforms
-        option(value=platform selected)= platform
+    select(name="platforms[]" multiple placeholder="Select the related platforms")
+      if tutorial.platforms
+        each platform in tutorial.platforms
+          option(value=platform.name )= platform.name
 
   .field
-    select(name="projects" multiple placeholder="Project")
-      each project in tutorial.projects
-        option(value=project.id selected) #{project.platform}/#{project.name}
-    small Find project by name or paste a link to a repository that is not in our database
+    select(name="projects[]" multiple placeholder="Specify the projects referred to in the tutorial")
+      if tutorial.projects
+        each project in tutorial.projects
+          option(value=project.id selected) #{project.platform}/#{project.name}
+
+  .field
+    select(name="keywords[]" multiple placeholder="Keywords")
+      if tutorial.keywords
+        each keyword in tutorial.keywords
+          option(value=keyword selected) #{keyword}
       
-  .field
+  .field.buttons
     button.btn.btn-action(type="submit" name="publish") Publish
     button.btn(type="submit" name="draft") Save draft

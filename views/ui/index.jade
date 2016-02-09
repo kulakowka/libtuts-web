@@ -1,0 +1,154 @@
+extends ../layout
+
+block content
+  h1 UI Example
+  
+  h1 Forms
+
+  .row
+    .col.col-4
+      h1 Resend instructions  
+      include ../auth/includes/resendPasswordForm
+  br      
+  .row
+    .col.col-4
+      h1 Recover password
+      include ../auth/includes/recoverPasswordForm
+  br
+  .row
+    .col.col-4
+      h1 Sign in
+      include ../auth/includes/signinForm
+  br
+  .row
+    .col.col-4
+      h1 Create account
+      include ../auth/includes/signupForm
+  
+
+  h2 Forms fields
+  .row
+    .col.col-6
+      form.defaultForm
+        .field
+          input(type="text" pattern="[A-Za-z]{6,20}" placeholder="Не менее шести и не более двдцати латинских букв." required maxlength=20)
+        .field
+          input(type="text" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$" placeholder="Username with 3-20 chars" required maxlength=20)
+        .field
+          input(type="text" pattern="[A-Z]" placeholder="Только одна заглавная латинская буква." required)
+        .field
+          input(type="text" pattern="[A-Za-z]" placeholder="Только одна латинская буква в любом регистре." required)
+        .field
+          input(type="text" pattern="[0-9]{3}" placeholder="Три цифры." required)
+        .field
+          input(type="text" pattern="[A-Za-z]{6,}" placeholder="Не менее шести латинских букв." required)
+        .field
+          input(type="text" pattern="^[a-zA-Z]+$" placeholder="Любое слово на латинице." required)
+        .field
+          input(type="text" pattern="^[А-Яа-яЁё\s]+$" placeholder="Любое слово на русском включая пробелы." required)
+        .field
+          input(type="text" pattern=".{3,}" placeholder="Не менее 3 любых символов"  required)
+        .field
+          input(type="email" placeholder="email" required )
+        .field
+          input(type="url" placeholder="url" required)
+        .field
+          input(type="password" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" placeholder="Password (UpperCase, LowerCase, Number/SpecialChar and min 8 Chars)" required)
+        .field
+          textarea.js-default-textarea(placeholder="textarea" required maxlength=20)
+        .field
+          select.js-default-select(placeholder="select single")
+            option(value="1") option1
+            option(value="2") option2
+            option(value="3") option3
+        .field
+          select.js-default-select(placeholder="select multiple" multiple)
+            option(value="1") option1
+            option(value="2") option2
+            option(value="3") option3
+        .field
+          button.btn.btn-action(type="submit") Submit
+          button.btn(type="reset") Reset
+
+
+  h2 Buttons
+  
+  .row.row-l
+    .col.col-2
+      a.btn(href="#") Default link button
+    .col.col-2
+      a.btn.btn-action(href="#") Action link button
+  br
+  .row.row-l
+    .col.col-2
+      button.btn Default button  
+    .col.col-2
+      button.btn.btn-action Action button  
+    .col.col-2
+      button.btn.btn-action.btn-loading Action double button
+    .col.col-2
+      button.btn(disabled) Disabled default button  
+
+  
+    
+    
+
+
+
+  h2 Grid
+  .ui-grid-preview
+    .row
+      .col.col-1 1
+      .col.col-8 8
+      .col.col-1 1
+    .row
+      .col.col-2 2
+      .col.col-6 6
+      .col.col-2 2
+    .row
+      .col.col-3 3
+      .col.col-4 4
+      .col.col-3 3
+    .row
+      .col.col-4 4
+      .col.col-2 2
+      .col.col-4 4
+    
+    .row
+      .col.col-4 4
+      .col.col-6 6
+    .row
+      .col.col-2 2
+      .col.col-8 8
+
+    .row
+      .col.col-1 1
+    .row
+      .col.col-2 2
+    .row
+      .col.col-6 6
+    .row
+      .col.col-2 2
+    
+    .row.row-l
+      .col.col-1 1
+    .row.row-l
+      .col.col-2 2
+    .row.row-l
+      .col.col-6 6
+    .row.row-l
+      .col.col-2 2
+
+    .row.row-r
+      .col.col-1 1
+    .row.row-r
+      .col.col-2 2
+    .row.row-r
+      .col.col-6 6
+    .row.row-r
+      .col.col-2 2
+
+    .row
+      .col.col-2 2
+      .col.col-2 2
+    

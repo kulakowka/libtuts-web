@@ -1,74 +1,76 @@
 extends ../layout
 
 block content
-  article.tutorial
-    h1= tutorial.title
-    
-    if tutorial.contentHtml
-      .content!= tutorial.contentHtml
-
-    section
-      h2 Meta information
-      dl.meta
-        dt Created at:
-          dd= moment(tutorial.createdAt).fromNow()
-        dt Updated at:
-          dd= moment(tutorial.updatedAt).fromNow()
-
-        if tutorial.creator
-          dt Created by:
-          dd 
-            a(href=`/users/${tutorial.creator.username}`)= tutorial.createdBy.username
+  .row
+    .col.col-8.col-l
+      article.tutorial
+        h1= tutorial.title
         
-        if tutorial.contributors.length
-          dt Contributors:
-          dd
-            each contributor, index in tutorial.contributors
-              if index
-                = ", "
-              a(href="/users/"+contributor.username)= contributor.username
-        
-        if tutorial.sourceUrl
-          dt Source URL:
-          dd
-            a(href=tutorial.sourceUrl)= tutorial.sourceUrl
-        
-        if tutorial.languages
-          dt Languages:
-          dd
-            each language, index in tutorial.languages
-              if index
-                = ", "
-              a(href=`/language/${language}`)= language
+        if tutorial.contentHtml
+          .content!= tutorial.contentHtml
 
-        if tutorial.platforms
-          dt Platforms:
-          dd
-            each platform, index in tutorial.platforms
-              if index
-                = ", "
-              a(href=`/${platform}`)= platform
+        section
+          h2 Meta information
+          dl.meta
+            dt Created at:
+              dd= moment(tutorial.createdAt).fromNow()
+            dt Updated at:
+              dd= moment(tutorial.updatedAt).fromNow()
+
+            if tutorial.creator
+              dt Created by:
+              dd 
+                a(href=`/users/${tutorial.creator.username}`)= tutorial.createdBy.username
             
-        if tutorial.projects
-          dt Projects:
-          dd
-            each project, index in tutorial.projects
-              if index
-                = ", "
-              a(href="/"+project.platform+"/"+project.name)= project.name
+            if tutorial.contributors.length
+              dt Contributors:
+              dd
+                each contributor, index in tutorial.contributors
+                  if index
+                    = ", "
+                  a(href="/users/"+contributor.username)= contributor.username
+            
+            if tutorial.sourceUrl
+              dt Source URL:
+              dd
+                a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+            
+            if tutorial.languages
+              dt Languages:
+              dd
+                each language, index in tutorial.languages
+                  if index
+                    = ", "
+                  a(href=`/language/${language}`)= language
 
-        if tutorial.keywords
-          dt Keywords:
-          dd
-            each keyword, index in tutorial.keywords
-              if index
-                = ", "
-              a(href="/search?keywords="+keyword)= keyword
+            if tutorial.platforms
+              dt Platforms:
+              dd
+                each platform, index in tutorial.platforms
+                  if index
+                    = ", "
+                  a(href=`/${platform}`)= platform
+                
+            if tutorial.projects
+              dt Projects:
+              dd
+                each project, index in tutorial.projects
+                  if index
+                    = ", "
+                  a(href="/"+project.platform+"/"+project.name)= project.name
 
-    if comments
-      section
-        h2 Questions and discussion
-        include ../comments/list
+            if tutorial.keywords
+              dt Keywords:
+              dd
+                each keyword, index in tutorial.keywords
+                  if index
+                    = ", "
+                  a(href="/search?keywords="+keyword)= keyword
+
+        if comments
+          section
+            h2 Questions and discussion
+            include ../comments/list
 
 
 

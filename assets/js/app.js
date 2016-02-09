@@ -13,15 +13,13 @@ if ($('body.production').length) {
 }
 
 // Handlers
-var search = require('./handlers/search')
-var tutorial = require('./handlers/tutorial')
-var project = require('./handlers/project')
+var forms = require('./handlers/forms')
+var selectize = require('./handlers/selectize')
 
 // Init all forms (it's only for prototyping and should be refactored when it will be ready to production)
 function initForms () {
-  search.initSearchForm()
-  tutorial.initTutorialForm()
-  project.initProjectForm()
+  selectize.initSelectize()
+  forms.initDefaultForm()
 }
 
 initForms()

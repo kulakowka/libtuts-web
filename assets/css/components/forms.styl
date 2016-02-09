@@ -2,26 +2,67 @@
 // - Создание поста
 // - Добавление проекта
 
-form.projectForm,
-form.tutorialForm
+form.defaultForm
   .field + .field
-    margin-top 20px
-  
-  textarea
-    resize none
-  textarea,
-  input
-    padding 5px 10px
-    width 100%
-
+    margin-top 1.4em
+  .field
+    text-align left
+    .field-description
+      font-size 0.9em
+      color #ccc
+      margin 0.4em 0 0
+    > input[type="text"],
+    > input[type="email"],
+    > input[type="url"],
+    > input[type="password"],
+    > textarea
+      -webkit-appearance none
+      border 0
+      padding 0 15px
+      margin 0
+      border-radius 0px
+      line-height 40px
+      width 100%
+      max-width 100%
+      display inline-block
+      vertical-align middle
+      font-weight normal
+      font-size 1em
+      border 1px solid #eee
+      background transparent 
+      color #222
+      &:focus
+        outline none
+        border 1px solid deepskyblue
+      &:required
+        // border 1px solid pink
+      &:focus:invalid
+        border 1px solid red
+      &:focus:valid 
+        border 1px solid deepskyblue
+    textarea
+      resize none
+      line-height 20px
+      padding 10px 15px
 
   .field
-          
-    .btn + .btn
+    .links
       margin-left 2em
-form.projectForm
-  input[name="name"]
-    font-size 1.5em
+      font-size 0.9em  
+      text-align left
+      color #ccc
+      a,
+      a:visited
+        color grey
+  .field.buttons
+    .btn + .btn
+      margin-left 1.5em
+    
+form.submitted:invalid
+  border: 5px solid #ffdddd
+
+
 form.tutorialForm
-  input[name="title"]
-    font-size 1.5em
+  .field
+    input[name="title"]
+      font-size 1.5em
