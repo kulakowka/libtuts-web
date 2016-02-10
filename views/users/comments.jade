@@ -1,0 +1,8 @@
+extends ../layout
+
+block content
+  h1= user.username
+  
+  section
+    h2 Comments created by user:
+    include ../comments/includes/list

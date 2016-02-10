@@ -44,6 +44,8 @@ r
 .get('/shield/:platform/:name.svg', c.shield.show)
 
 .get('/user/:username', c.user.show)
+.get('/user/:username/tutorials', c.user.tutorials)
+.get('/user/:username/comments', c.user.comments)
 .get('/settings', c.settings.index)
 .get('/:name', c.platform.show)
 .get('/:platform/:name', c.project.show)

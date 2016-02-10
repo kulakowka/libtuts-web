@@ -1,6 +1,6 @@
 .tutorialsList
-  if tutorials
+  if tutorials.length
     each tutorial in tutorials
       include listItem
   else
-    p tutorials not found
+    p No tutorials...
