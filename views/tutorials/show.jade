@@ -4,7 +4,11 @@ block content
   .row
     .col.col-8.col-l
       article.tutorial
-        h1= tutorial.title
+        .edit
+          a.btn(href=tutorial.webUrl + '/edit') Edit tutorial
+        h1
+          = tutorial.title
+
         
         if tutorial.contentHtml
           .content!= tutorial.contentHtml
@@ -67,10 +71,11 @@ block content
                     = ", "
                   a(href="/search?keywords="+keyword)= keyword
 
-        if comments
-          section
-            h2 Questions and discussion
-            include ../comments/list
+        
+        section
+          h2 Questions and discussion
+          include ../comments/includes/form
+          include ../comments/includes/list
 
 
 

@@ -36,6 +36,9 @@ r
 .post('/tutorials', c.tutorial.create)
 .get('/tutorial/new', c.tutorial.new)
 .get('/tutorial/:id', c.tutorial.show)
+.get('/tutorial/:id/edit', c.tutorial.edit)
+
+.post('/comments', c.comment.create)
 
 .get('/shield/:platform/:name.svg', c.shield.show)
 

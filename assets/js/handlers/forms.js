@@ -4,6 +4,7 @@ var autosize = require('autosize')
 require('codemirror/mode/javascript/javascript')
 require('codemirror/mode/gfm/gfm')
 require('codemirror/addon/display/placeholder')
+require('codemirror/addon/edit/continuelist')
 
 var CodeMirror = require('codemirror/lib/codemirror')
 
@@ -13,7 +14,15 @@ function initCodeMirror (textareaElement) {
     mode: 'gfm',
     lineWrapping: true,
     viewportMargin: Infinity,
-    theme: 'chrome-devtools'
+    theme: 'chrome-devtools',
+    extraKeys: {
+      'Enter': 'newlineAndIndentContinueMarkdownList',
+      'Tab': false,
+      'Alt-Tab': function (cm) {
+        // var spaces = Array(cm.getOption('indentUnit') + 1).join(' ')
+        cm.execCommand('insertTab')
+      }
+    }
   })
 
   return editor
@@ -26,7 +35,11 @@ module.exports.initDefaultForm = function initDefaultForm () {
   // Textarea autosize
   autosize($('form.defaultForm textarea.js-default-textarea'))
 
-  var textarea = $('form[name="tutorial"] textarea[name="content"]').get(0)
+  var tutorialContent = $('form[name="tutorial"] textarea[name="content"]').get(0)
+  if (tutorialContent) initCodeMirror(tutorialContent)
 
-  initCodeMirror(textarea)
+  var commentContent = $('form[name="comment"] textarea[name="content"]').get(0)
+  if (commentContent) initCodeMirror(commentContent)
+
 }
+
