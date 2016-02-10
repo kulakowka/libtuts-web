@@ -29,5 +29,5 @@ function loadPlatforms () {
 }
 
 function loadTutorials () {
-  return API.model('tutorial').find().sort('-createdAt').limit(10).exec()
+  return API.model('tutorial').find().sort('-createdAt').populate('creator').limit(6).exec()
 }

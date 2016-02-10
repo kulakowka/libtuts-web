@@ -1,3 +1,9 @@
 .tutorialItem
   h3
-    a(href="/tutorial/"+tutorial._id)= tutorial.title
+    a(href=(tutorial.sourceUrl || tutorial.webUrl) target="_blank")= tutorial.title
+  .meta 
+    a(href=tutorial.webUrl + '#comments' title=numeral(tutorial.commentsCount).format('0,0')) #{numeral(tutorial.commentsCount).format('0a')} comments
+    = " · "
+    a(href="/user/"+tutorial.creator.username)= tutorial.creator.username
+    = " · "
+    a(href=tutorial.webUrl)= moment(tutorial.createdAt).fromNow()    
