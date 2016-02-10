@@ -1,82 +1,83 @@
 extends ../layout
 
 block content
+  .row
+    .col.col-8.col-l
+      article.tutorial
+        .edit
+          a.btn(href=tutorial.webUrl + '/edit') Edit tutorial
+        h1
+          = tutorial.title
 
-  article.tutorial
-    .edit
-      a.btn(href=tutorial.webUrl + '/edit') Edit tutorial
-    h1
-      = tutorial.title
+        
+        if tutorial.contentHtml
+          .content!= tutorial.contentHtml
 
-    
-    if tutorial.contentHtml
-      .content!= tutorial.contentHtml
+        section
+          h2 Meta information
+          dl.meta
+            if tutorial.sourceUrl
+              dt Source URL:
+              dd
+                a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+                
+            dt Created at:
+              dd= moment(tutorial.createdAt).fromNow()
+            dt Updated at:
+              dd= moment(tutorial.updatedAt).fromNow()
 
-    section
-      h2 Meta information
-      dl.meta
-        if tutorial.sourceUrl
-          dt Source URL:
-          dd
-            a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+            if tutorial.creator
+              dt Created by:
+              dd 
+                a(href=`/user/${tutorial.creator.username}`)= tutorial.creator.username
             
-        dt Created at:
-          dd= moment(tutorial.createdAt).fromNow()
-        dt Updated at:
-          dd= moment(tutorial.updatedAt).fromNow()
-
-        if tutorial.creator
-          dt Created by:
-          dd 
-            a(href=`/user/${tutorial.creator.username}`)= tutorial.creator.username
-        
-        if tutorial.contributors.length
-          dt Contributors:
-          dd
-            each contributor, index in tutorial.contributors
-              if index
-                = ", "
-              a(href="/user/"+contributor.username)= contributor.username
-        
-        
-        
-        if tutorial.languages.length
-          dt Languages:
-          dd
-            each language, index in tutorial.languages
-              if index
-                = ", "
-              a(href=`/language/${language}`)= language
-
-        if tutorial.platforms.length
-          dt Platforms:
-          dd
-            each platform, index in tutorial.platforms
-              if index
-                = ", "
-              a(href=`/${platform}`)= platform
+            if tutorial.contributors.length
+              dt Contributors:
+              dd
+                each contributor, index in tutorial.contributors
+                  if index
+                    = ", "
+                  a(href="/user/"+contributor.username)= contributor.username
             
-        if tutorial.projects.length
-          dt Projects:
-          dd
-            each project, index in tutorial.projects
-              if index
-                = ", "
-              a(href="/" + project)= project
+            
+            
+            if tutorial.languages.length
+              dt Languages:
+              dd
+                each language, index in tutorial.languages
+                  if index
+                    = ", "
+                  a(href=`/language/${language}`)= language
 
-        if tutorial.keywords.length
-          dt Keywords:
-          dd
-            each keyword, index in tutorial.keywords
-              if index
-                = ", "
-              a(href="/search?keywords="+keyword)= keyword
+            if tutorial.platforms.length
+              dt Platforms:
+              dd
+                each platform, index in tutorial.platforms
+                  if index
+                    = ", "
+                  a(href=`/${platform}`)= platform
+                
+            if tutorial.projects.length
+              dt Projects:
+              dd
+                each project, index in tutorial.projects
+                  if index
+                    = ", "
+                  a(href="/" + project)= project
 
-    
-    section
-      h2 Questions and discussion
-      include ../comments/includes/form
-      include ../comments/includes/list
+            if tutorial.keywords.length
+              dt Keywords:
+              dd
+                each keyword, index in tutorial.keywords
+                  if index
+                    = ", "
+                  a(href="/search?keywords="+keyword)= keyword
+
+        
+        section
+          h2 Questions and discussion
+          include ../comments/includes/form
+          include ../comments/includes/list
 
 
 

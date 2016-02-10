@@ -2,7 +2,6 @@ header.js-Pjax
   .inner
     a.siteName(href="/") LibTuts
     nav.mainMenu
-      a.item(href='/') Mainpage
       a.item(href='/tutorials') Tutorials
       a.item(href='/projects') Projects
       a.item(href='/platforms') Platforms
@@ -26,5 +25,8 @@ header.js-Pjax
             a(href="/project/new") Create Project
     else
       nav.guestMenu
-        a.item(href='/auth/signin') Sign in
-        a.item(href='/auth/signup') Sign up
+        span.dropdown
+          a.item.handle Sign in
+          span.menu.right
+            a(href='/auth/signin') Sign in
+            a(href='/auth/signup') Sign up
