@@ -20,7 +20,7 @@ module.exports = function show (req, res, next) {
 }
 
 function loadTutorial (_id) {
-  return Tutorial.findOne({_id}).exec()
+  return Tutorial.findOne({_id}).populate('creator,contributors').exec()
 }
 
 function loadComments (tutorial) {

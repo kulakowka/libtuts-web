@@ -24,7 +24,7 @@ block content
             if tutorial.creator
               dt Created by:
               dd 
-                a(href=`/users/${tutorial.creator.username}`)= tutorial.createdBy.username
+                a(href=`/users/${tutorial.creator.username}`)= tutorial.creator.username
             
             if tutorial.contributors.length
               dt Contributors:

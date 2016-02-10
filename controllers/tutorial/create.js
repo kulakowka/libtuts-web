@@ -4,6 +4,9 @@ const API = require('../../utils/api')
 
 // POST /tutorials
 module.exports = function index (req, res, next) {
+  let creator = req.session.user
+  req.body.creator = creator
+  req.body.contributors = [creator]
   createTutorial(req.body).then(tutorial => {
     res.redirect(tutorial.webUrl)
   }).catch(next)
@@ -11,7 +14,6 @@ module.exports = function index (req, res, next) {
 
 function createTutorial (body) {
   if (body.projects) body.projects = getProjects(body.projects)
-  console.log(body.projects)
   return API.model('tutorial').create(body).exec()
 }
 

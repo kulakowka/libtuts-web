@@ -2,8 +2,7 @@
   .content!= comment.contentHtml
   .meta
     if comment.creator
-      a(href="/users/"+comment.creator.username)= comment.createdBy.fullName
-    a(href="/users/kulakowka") kulakowka
+      a(href="/users/"+comment.creator.username)= comment.creator.username
     = " · "
     a(href=`#comment_${comment._id}`)= moment(comment.createdAt).fromNow()
     

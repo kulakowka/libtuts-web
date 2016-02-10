@@ -5,10 +5,12 @@ form.defaultForm(action="/auth/register" method="post" name="signin")
     input(type="text" name="username" placeholder="Username" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$" maxlength=20 )
     //- .field-description Username must be alphanumeric. Min 3 and max 20 Chars.
   .field
-    input(type="password" name="password" placeholder="Password" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$")
+    input(type="password" name="password" placeholder="Password" required )
+    //- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$")      
     //- .field-description Password must contain UpperCase, LowerCase, Number/SpecialChar and min 8 Chars.
   .field
-    input(type="password" name="passwordConfirmation" placeholder="Confirm password" required pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" )
+    input(type="password" name="passwordConfirmation" placeholder="Confirm password" required) 
+    //- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" )
   .field
     button.btn.btn-action(type="submit") Sign up
     span.links
