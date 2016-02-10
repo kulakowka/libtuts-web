@@ -27,7 +27,7 @@
     "pmx": "^0.6.0",
     "request": "^2.69.0",
     "require-dir": "^0.3.0",
-    "rest-api-request": "^0.5.2",
+    "rest-api-request": "^0.5.3",
     "selectize": "^0.12.1",
     "serve-favicon": "~2.3.0",
     "serve-static": "^1.10.2",

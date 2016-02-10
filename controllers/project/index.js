@@ -1,7 +1,6 @@
 'use strict'
 
 const API = require('../../utils/api')
-const Project = API.model('project')
 
 // GET /
 module.exports = function index (req, res, next) {
@@ -11,5 +10,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadProjects () {
-  return Project.find().sort('-rank').exec()
+  return API.model('project').find().sort('-rank').exec()
 }

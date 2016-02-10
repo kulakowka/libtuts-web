@@ -2,8 +2,6 @@
 
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
-const Project = API.model('project')
-const Tutorial = API.model('tutorial')
 
 const async = require('async')
 
@@ -20,9 +18,9 @@ module.exports = function show (req, res, next) {
 }
 
 function loadProject (condition) {
-  return Project.findOne(condition).exec()
+  return API.model('project').findOne(condition).exec()
 }
 
 function loadTutorials (condition) {
-  return Tutorial.find({projects: {$elemMatch: condition}}).sort('-createdAt').exec()
+  return API.model('tutorial').find({projects: {$elemMatch: condition}}).sort('-createdAt').exec()
 }

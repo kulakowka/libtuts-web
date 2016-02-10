@@ -2,7 +2,6 @@
 
 const numeral = require('numeral')
 const API = require('../../utils/api')
-const Project = API.model('project')
 
 // GET /shield/:platform/:project
 module.exports = function show (req, res, next) {
@@ -23,7 +22,7 @@ module.exports = function show (req, res, next) {
 }
 
 function loadProject (condition) {
-  return Project.findOne(condition).select('tutorialsCount').exec()
+  return API.model('project').findOne(condition).select('tutorialsCount').exec()
 }
 
 function getShield (count) {

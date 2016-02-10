@@ -8,7 +8,7 @@ const async = require('async')
 // GET /language/:name
 module.exports = function show (req, res, next) {
   async.parallel({
-    language: async.asyncify(() => loadLanguage(req.params.name)),
+    language: async.asyncify(() => loadLanguage(req.params)),
     projects: async.asyncify(() => loadProjects(req.params.name)),
     tutorials: async.asyncify(() => loadTutorials(req.params.name))
   }, (err, results) => {
@@ -18,8 +18,8 @@ module.exports = function show (req, res, next) {
   })
 }
 
-function loadLanguage (name) {
-  return API.model('language').findOne({name}).exec()
+function loadLanguage (params) {
+  return API.model('language').findOne(params).exec()
 }
 
 function loadProjects (language) {

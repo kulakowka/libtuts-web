@@ -2,8 +2,6 @@
 
 const API = require('../../utils/api')
 
-const Tutorial = API.model('tutorial')
-
 // GET /search
 module.exports = function index (req, res, next) {
   loadTutorials(req.query).then(tutorials => {
@@ -25,5 +23,5 @@ function loadTutorials (query) {
     ]}
   }
 
-  return Tutorial.find(where).sort('-createdAt').limit(100).exec()
+  return API.model('tutorial').find(where).sort('-createdAt').limit(100).exec()
 }

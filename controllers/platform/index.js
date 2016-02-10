@@ -1,7 +1,6 @@
 'use strict'
 
 const API = require('../../utils/api')
-const Platform = API.model('platform')
 
 // GET /platforms
 module.exports = function index (req, res, next) {
@@ -11,5 +10,5 @@ module.exports = function index (req, res, next) {
 }
 
 function loadPlatforms () {
-  return Platform.find().sort('-projectsCount').limit(200).exec()
+  return API.model('platform').find().sort('-projectsCount').limit(200).exec()
 }

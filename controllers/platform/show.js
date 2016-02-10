@@ -2,15 +2,12 @@
 
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
-const Platform = API.model('platform')
-const Project = API.model('project')
-
 const async = require('async')
 
 // GET /:name
 module.exports = function show (req, res, next) {
   async.parallel({
-    platform: async.asyncify(() => loadPlatform(req.params.name)),
+    platform: async.asyncify(() => loadPlatform(req.params)),
     projects: async.asyncify(() => loadProjects(req.params.name)),
     tutorials: async.asyncify(() => loadTutorials(req.params.name))
   }, (err, results) => {
@@ -20,12 +17,12 @@ module.exports = function show (req, res, next) {
   })
 }
 
-function loadPlatform (name) {
-  return Platform.findOne({name}).exec()
+function loadPlatform (params) {
+  return API.model('platform').findOne(params).exec()
 }
 
 function loadProjects (platform) {
-  return Project.find({platform}).sort('-rank').limit(40).exec()
+  return API.model('project').find({platform}).sort('-rank').limit(40).exec()
 }
 
 function loadTutorials (platform) {
