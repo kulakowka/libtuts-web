@@ -9,7 +9,11 @@ module.exports = (req, res) => {
 
 function loadItems (q) {
   return API.model('project').find()
-        .select('name,platform,_id')
+        .select('name platform')
         .limit(20).exec()
-        // .then(items => items.map(item => ({text: `${item.name}`, value: `${item.name}`})))
+        .then(items => items.map(item => ({text: getProjectId(item), value: getProjectId(item)})))
+}
+
+function getProjectId (project) {
+  return `${project.platform}/${project.name}`
 }

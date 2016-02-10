@@ -20,9 +20,11 @@ form.defaultForm.tutorialForm(action=(tutorial._id ? tutorial.webUrl : '/tutoria
         each platform in platforms
           option(value=platform.name )= platform.name
 
-  .field
+  .field    
     select(name="projects[]" multiple placeholder="Specify the projects referred to in the tutorial")
-
+      if tutorial.projects
+        each project in tutorial.projects
+          option(value=project selected )= project
   .field
     select(name="keywords[]" multiple placeholder="Keywords")
       

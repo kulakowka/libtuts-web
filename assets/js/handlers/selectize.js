@@ -16,17 +16,21 @@ module.exports.initSelectize = function initTutorialForm () {
     load: loadData('/suggest/platforms')
   })
 
-  $('select[name="projects[]"]').selectize({
-    persist: false,
-    valueField: 'webUrl',
-    labelField: 'name',
-    searchField: 'name',
-    create: false,
-    render: {
-      item: renderProjectItem,
-      option: renderProjectOption
-    },
-    load: loadData('/suggest/projects')
+  $('select[name="projects[]"]').each(function () {
+    $(this).selectize({
+      persist: false,
+      // valueField: 'webUrl',
+      // labelField: 'name',
+      // searchField: 'name',
+      create: false,
+      // options: options,
+      // items: options,
+      // render: {
+      //   item: renderProjectItem,
+      //   option: renderProjectOption
+      // },
+      load: loadData('/suggest/projects')
+    })
   })
 
   $('select[name="keywords[]"]').selectize({

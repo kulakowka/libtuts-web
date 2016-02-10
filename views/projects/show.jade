@@ -12,4 +12,4 @@ block content
       else
         h2 No tutorials. 
         p 
-          a(href=`/tutorial/new`) Create tutorial for #{project.name}
+          a(href='/tutorial/new?project=' + project.platform + '/' + project.name) Create tutorial for #{project.name}

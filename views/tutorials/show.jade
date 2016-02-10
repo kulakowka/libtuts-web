@@ -63,7 +63,7 @@ block content
                 each project, index in tutorial.projects
                   if index
                     = ", "
-                  a(href="/"+project.platform+"/"+project.name)= project.name
+                  a(href="/" + project)= project
 
             if tutorial.keywords.length
               dt Keywords:

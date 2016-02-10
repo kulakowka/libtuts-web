@@ -11,6 +11,7 @@ module.exports = function newAction (req, res, next) {
   }, (err, results) => {
     if (err) return next(err)
     results.tutorial = {}
+    if (req.query.project) results.tutorial.projects = [req.query.project]
     res.render('tutorials/new', results)
   })
 }
