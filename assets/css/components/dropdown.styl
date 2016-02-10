@@ -1,0 +1,54 @@
+.dropdown
+  position relative
+  display inline-block
+  .handle
+    display inline-block
+    cursor pointer
+  .menu
+    display none
+    background white
+    position absolute
+    top 0px
+    box-shadow 0 2px 8px 0 rgba(0, 0, 0, 0.2)
+    text-align right
+    z-index 10
+    &.left
+      text-align left
+      left -20px
+    &.right
+      text-align right
+      right -20px
+    a + a
+      border-top 1px solid #eee
+    a
+      display block
+      padding 0px 20px
+      line-height 60px
+      white-space nowrap
+      text-decoration none
+      font-weight bold
+      color #222
+      &:first-letter
+        text-transform uppercase
+      &:hover
+        background deeppink
+        color white
+        .count 
+          color white
+      .count
+        vertical-align middle
+        text-align center
+        font-weight bold
+        // border-radius 30px
+        margin-left 10px
+        // background red
+        color green
+        font-size 10px
+        // line-height 16px
+        // min-width 12px
+        display inline-block
+        
+//.dropdown:hover,
+.dropdown.open
+  .menu
+    display inline-block

@@ -1,19 +1,29 @@
 header.js-Pjax
   .inner
     nav.mainMenu
-      a(href='/') Mainpage
-      a(href='/tutorials') Tutorials
-      a(href='/projects') Projects
-      a(href='/platforms') Platforms
-      a(href='/languages') Languages
+      a.item(href='/') Mainpage
+      a.item(href='/tutorials') Tutorials
+      a.item(href='/projects') Projects
+      a.item(href='/platforms') Platforms
+      a.item(href='/languages') Languages
 
     if currentUser
       nav.userMenu
-        a(href=`/user/${currentUser.username}`)= currentUser.username
-        a(href='/tutorial/new') Add tutorial
-        a(href='/project/new') Add project
-        a(href=`/auth/logout`) Logout
+        span.dropdown
+          a.item.handle(href="/users/" + currentUser.username)= currentUser.username
+          span.menu.left
+            a(href="/user/" + currentUser.username)= currentUser.username
+            a(href="/user/" + currentUser.username + "/tutorials") Your Tutorials
+            a(href="/user/" + currentUser.username + "/comments") Your Comments
+            a(href="/settings") Settings
+            a.js-button-logout(href="#") Sign Out
+
+        span.dropdown
+          a.item.handle Create
+          span.menu.right
+            a(href="/tutorial/new") Create Tutorial
+            a(href="/project/new") Create Project
     else
       nav.guestMenu
-        a(href='/auth/signin') Sign in
-        a(href='/auth/signup') Sign up
+        a.item(href='/auth/signin') Sign in
+        a.item(href='/auth/signup') Sign up

@@ -14,7 +14,7 @@ r
 .get('/ui', m.render('ui/index'))
 .post('/ui', c.ui.create)
 .get('/search', m.searchFormData, c.search.index)
-.get('/auth/logout', c.auth.logout)
+.post('/auth/logout', c.auth.logout)
 .get('/auth/recover', c.auth.recover)
 .get('/auth/resend', c.auth.resend)
 .get('/auth/signin', c.auth.signin)
@@ -44,6 +44,7 @@ r
 .get('/shield/:platform/:name.svg', c.shield.show)
 
 .get('/user/:username', c.user.show)
+.get('/settings', c.settings.index)
 .get('/:name', c.platform.show)
 .get('/:platform/:name', c.project.show)
 

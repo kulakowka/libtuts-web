@@ -17,6 +17,8 @@ var forms = require('./handlers/forms')
 var selectize = require('./handlers/selectize')
 var comment = require('./handlers/comment')
 var tutorial = require('./handlers/tutorial')
+var dropdown = require('./handlers/dropdown')
+var auth = require('./handlers/auth')
 
 // Init all forms (it's only for prototyping and should be refactored when it will be ready to production)
 function initForms () {
@@ -32,6 +34,12 @@ $(document)
 
   // pjax
   .on('pjax:success', initForms)
+
+  // dropdown
+  .on('click', '.dropdown .handle', dropdown.onHandleClick)
+
+  // auth
+  .on('click', '.js-button-logout', auth.logout)
 
   // comments
   .on('submit', '.commentForm', comment.onFormSubmit)
