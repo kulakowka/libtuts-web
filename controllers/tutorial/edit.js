@@ -7,16 +7,14 @@ const async = require('async')
 // GET /tutorial/:id
 module.exports = function show (req, res, next) {
   async.parallel({
-    tutorial: async.asyncify(() => loadTutorial(req.params.id))
+    tutorial: async.asyncify(() => loadTutorial(req.params))
   }, (err, results) => {
     if (err) return next(err)
     if (!results.tutorial) return next(notFoundError('Tutorial not found'))
-    // console.log(results)
     res.render('tutorials/edit', results)
   })
 }
 
-function loadTutorial (_id) {
-  return API.model('tutorial').findOne({_id}).exec()
+function loadTutorial (params) {
+  return API.model('tutorial').findOne(params).exec()
 }
-

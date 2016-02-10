@@ -1,12 +1,12 @@
-form.defaultForm.tutorialForm(action="/tutorials" method="post" name="tutorial")
+form.defaultForm.tutorialForm(action=(tutorial._id ? tutorial.webUrl : '/tutorials') method="post" name="tutorial")
   .field
-    input(type="text" name="title" placeholder="Title" value=tutorial.title required)
+    input(type="text" name="title" placeholder="Title" value=tutorial.title required autofocus)
   
   .field
     input(type="url" name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl)
   
   .field
-    textarea(name="content" rows="5" placeholder="Content")= tutorial.content
+    textarea(name="content" placeholder="Content")= tutorial.content
     
   .field
     select.js-default-select(name="languages[]" multiple placeholder="Specify the programming languages")

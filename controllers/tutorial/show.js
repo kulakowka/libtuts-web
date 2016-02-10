@@ -2,16 +2,13 @@
 
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
-const Tutorial = API.model('tutorial')
-const Comment = API.model('comment')
-
 const async = require('async')
 
-// GET /tutorial/:id
+// GET /tutorial/:_id
 module.exports = function show (req, res, next) {
   async.parallel({
-    tutorial: async.asyncify(() => loadTutorial(req.params.id)),
-    comments: async.asyncify(() => loadComments(req.params.id))
+    tutorial: async.asyncify(() => loadTutorial(req.params)),
+    comments: async.asyncify(() => loadComments(req.params))
   }, (err, results) => {
     if (err) return next(err)
     if (!results.tutorial) return next(notFoundError('Tutorial not found'))
@@ -19,10 +16,10 @@ module.exports = function show (req, res, next) {
   })
 }
 
-function loadTutorial (_id) {
-  return Tutorial.findOne({_id}).populate('creator,contributors').exec()
+function loadTutorial (params) {
+  return API.model('tutorial').findOne(params).populate('creator,contributors').exec()
 }
 
 function loadComments (tutorial) {
-  return Comment.find({tutorial}).sort('-createdAt').populate('creator').exec()
+  return API.model('comment').find({tutorial}).sort('-createdAt').populate('creator').exec()
 }

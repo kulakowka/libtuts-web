@@ -16,6 +16,11 @@ block content
         section
           h2 Meta information
           dl.meta
+            if tutorial.sourceUrl
+              dt Source URL:
+              dd
+                a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+                
             dt Created at:
               dd= moment(tutorial.createdAt).fromNow()
             dt Updated at:
@@ -34,10 +39,7 @@ block content
                     = ", "
                   a(href="/users/"+contributor.username)= contributor.username
             
-            if tutorial.sourceUrl
-              dt Source URL:
-              dd
-                a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+            
             
             if tutorial.languages.length
               dt Languages:

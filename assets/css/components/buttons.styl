@@ -14,11 +14,15 @@
   background transparent 
   color grey
   white-space nowrap
-  &:focus
   &:hover 
+    border 1px solid grey
     background grey
     color white
     text-decoration none
+  &:focus
+    border 1px solid deepskyblue
+    background deepskyblue
+    color white
     outline none
 
 .btn:disabled
@@ -34,10 +38,14 @@
   border 1px solid deeppink
   background transparent 
   color deeppink
-  &:focus,
   &:hover 
     background deeppink
     color white
+  &:focus
+    border 1px solid deepskyblue
+    background deepskyblue
+    color white
+    outline none
 .btn.btn-loading
   &:after
     content: '...'

@@ -35,8 +35,9 @@ r
 .get('/tutorials', c.tutorial.index)
 .post('/tutorials', c.tutorial.create)
 .get('/tutorial/new', c.tutorial.new)
-.get('/tutorial/:id', c.tutorial.show)
-.get('/tutorial/:id/edit', c.tutorial.edit)
+.get('/tutorial/:_id', c.tutorial.show)
+.post('/tutorial/:_id', c.tutorial.update)
+.get('/tutorial/:_id/edit', c.tutorial.edit)
 
 .post('/comments', c.comment.create)
 
