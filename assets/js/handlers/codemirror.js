@@ -12,7 +12,6 @@ module.exports.initCodeMirror = function initCodeMirror (textareaElement) {
   var editor = CodeMirror.fromTextArea(textareaElement, {
     mode: 'gfm',
     lineWrapping: true,
-    minHeight: 200,
     viewportMargin: Infinity,
     theme: 'chrome-devtools',
     extraKeys: {
