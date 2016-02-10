@@ -1,0 +1,10 @@
+h1= user.username
+section
+  h2 Meta information
+  dl.meta
+    dt Tutorials
+    dd
+      a(href=user.webUrl+'/tutorials') #{user.tutorialsCount} tutorials
+    dt Comments
+    dd
+      a(href=user.webUrl+'/comments') #{user.commentsCount} comments

@@ -1,7 +1,8 @@
 extends ../layout
 
 block content
-  h1= user.username
-  section
-    h2 Tutorials created by user:
-    include ../tutorials/includes/list
+  .userShow
+    include includes/about
+    section
+      h2 Tutorials created by user:
+      include ../tutorials/includes/list
