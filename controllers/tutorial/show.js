@@ -17,7 +17,7 @@ module.exports = function show (req, res, next) {
 }
 
 function loadTutorial (params) {
-  return API.model('tutorial').findOne(params).populate('creator,contributors').exec()
+  return API.model('tutorial').findOne(params).populate('creator contributors').exec()
 }
 
 function loadComments (tutorial) {

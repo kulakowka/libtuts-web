@@ -1,5 +1,6 @@
-if comments.length 
-  each comment in comments
-    include item
-else
-  p No comments... No questions...
+.commentsList
+  if comments.length 
+    each comment in comments
+      include item
+  else
+    p No comments... No questions...

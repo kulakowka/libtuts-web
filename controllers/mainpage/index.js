@@ -21,7 +21,7 @@ function loadProjects () {
 }
 
 function loadLanguages () {
-  return API.model('language').find().sort('-projectsCount').exec()
+  return API.model('language').find().sort('-projectsCount').limit(24).exec()
 }
 
 function loadPlatforms () {
