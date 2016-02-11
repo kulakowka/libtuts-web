@@ -3,8 +3,8 @@ extends ../layout
 block content
   .row.row-l
     .col.col-7
-      section(style="margin-right:40px;height:471px")
-        h2 Newest interesting tutorials for programmers around the world
+      section
+        //- h2 Newest interesting tutorials for programmers around the world
         include ../tutorials/includes/list
     .col.col-3
       include ../includes/sidebar/about
@@ -15,6 +15,8 @@ block content
       section
         h2 Find tutorials for popular open-source projects
         include ../projects/includes/grid
+  .row.row-l
+    .col
       section
         h2 We collect tutorials for projects from all popular platforms
         include ../platforms/includes/grid

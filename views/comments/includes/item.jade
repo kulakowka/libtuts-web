@@ -1,8 +1,8 @@
-.commentItem(id=`comment_${comment._id}`)
+section.commentItem(id=`comment_${comment._id}`)
   .meta
     if comment.creator
-      a(href="/users/"+comment.creator.username)= comment.creator.username
-    = " · "
+      a.creator(href="/users/"+comment.creator.username)= comment.creator.username
+    
     a(href=comment.webUrl)= moment(comment.createdAt).fromNow()
     
   .content!= comment.contentHtml

@@ -3,6 +3,8 @@
     background yellow
     outline 1px solid pink
 
+.row + .row
+  margin-top 20px
 .row
   text-align center
   &:first-child
@@ -15,6 +17,11 @@
     display inline-block
     vertical-align top
     width 100%
+    padding 0 20px
+    &:first-child
+      padding-left 0
+    &:last-child
+      padding-right 0
   .col-l
     text-align left
   .col-r

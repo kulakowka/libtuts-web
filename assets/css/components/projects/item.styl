@@ -1,19 +1,25 @@
-.projectsGrid .projectItem
-  width 25%
-  padding-right 2%
-  display inline-block
-  vertical-align top
-  margin 1.2em 0
-  h3
-    font-size 1.2em
-    margin 0px 0 0.5em
-    text-transform capitalize
-    word-break break-word
-    a
-      color #222
-  .meta
-    white-space nowrap
-    color grey
-    font-size 0.9em
-    a
+.projectsGrid 
+  margin -1.2em 0
+  .projectItem
+    width 25%
+    padding-right 2%
+    display inline-block
+    vertical-align top
+    margin 1.2em 0
+    // &:first-child
+    //   margin-top 0
+    h3
+      font-size 1.2em
+      margin 0px 0 0.5em
+      text-transform capitalize
+      word-break break-word
+      a
+        color #222
+    .meta
+      white-space nowrap
       color grey
+      font-size 0.9em
+      a
+        color grey
+      a + a
+        margin-left 10px

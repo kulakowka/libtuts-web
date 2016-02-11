@@ -12,7 +12,7 @@ block content
                 
         if tutorial.contentHtml
           section
-            .content.cm-s-chrome-devtools!= tutorial.contentHtml
+            .content.cm-s-libtuts!= tutorial.contentHtml
 
         section
           h2 Meta information
@@ -78,10 +78,10 @@ block content
                   a(href="/search?keywords="+keyword)= keyword
 
         
-        section#comments
-          h2 Questions and discussion
-          include ../comments/includes/form
-          include ../comments/includes/list
+        #comments
+        h2 Questions and discussion
+        include ../comments/includes/form
+        include ../comments/includes/list
 
 
 

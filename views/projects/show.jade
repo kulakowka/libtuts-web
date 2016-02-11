@@ -5,8 +5,9 @@ block content
   include includes/about
 
   if tutorials.length
+    
+    h2 #{project.name} tutorials:
     section
-      h2 #{project.name} tutorials:
       include ../tutorials/includes/list
   else
     h2 No tutorials. 

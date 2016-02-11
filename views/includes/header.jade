@@ -10,19 +10,20 @@ header.js-Pjax
     if currentUser
       nav.userMenu
         span.dropdown
-          a.item.handle(href="/users/" + currentUser.username)= currentUser.username
+          a.item.handle Create
           span.menu.left
+            a(href="/tutorial/new") Create Tutorial
+            a(href="/project/new") Create Project
+        span.dropdown
+          a.item.handle(href="/users/" + currentUser.username)= currentUser.username
+          span.menu.right
             a(href="/user/" + currentUser.username)= currentUser.username
             a(href="/user/" + currentUser.username + "/tutorials") Your Tutorials
             a(href="/user/" + currentUser.username + "/comments") Your Comments
             a(href="/settings") Settings
             a.js-button-logout(href="#") Sign Out
 
-        span.dropdown
-          a.item.handle Create
-          span.menu.right
-            a(href="/tutorial/new") Create Tutorial
-            a(href="/project/new") Create Project
+        
     else
       nav.guestMenu
         span.dropdown

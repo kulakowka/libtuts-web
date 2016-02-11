@@ -1,17 +1,18 @@
 .aboutProject
   h1= project.name
   if project.description
-    .description= project.description
+    .description
+      p= project.description
   
-  .shields
-    a(href='https://libtuts.com/npm/' + project.name)
-      img(src='/shield' + project.webUrl + '.svg' alt="Tutorials")
-    if project.platform === 'npm'
-      = " "
-      a(href='https://www.npmjs.org/package/' + project.name)
-        img(src='http://img.shields.io/npm/v/' + project.name + '.svg' alt='NPM version')
   section
-    h2 About #{project.name}
+    .shields
+      a(href='https://libtuts.com/npm/' + project.name)
+        img(src='/shield' + project.webUrl + '.svg' alt="Tutorials")
+      if project.platform === 'npm'
+        = " "
+        a(href='https://www.npmjs.org/package/' + project.name)
+          img(src='http://img.shields.io/npm/v/' + project.name + '.svg' alt='NPM version')
+  
     dl.meta
       if project.homepageUrl
         dt Homepage:

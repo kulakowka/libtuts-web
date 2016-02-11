@@ -15,7 +15,7 @@ module.exports.initCodeMirror = function initCodeMirror (textareaElement) {
     mode: 'gfm',
     lineWrapping: true,
     viewportMargin: Infinity,
-    theme: 'chrome-devtools',
+    theme: 'libtuts',
     extraKeys: {
       'Enter': 'newlineAndIndentContinueMarkdownList',
       'Tab': false,
