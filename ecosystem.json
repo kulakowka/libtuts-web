@@ -31,7 +31,7 @@
       "ref"  : "origin/master",
       "repo" : "git@bitbucket.org:Kulakowka/libtuts-web.git",
       "path" : "/var/www/production",
-      "post-deploy" : "npm install ; pm2 startOrRestart --env production"
+      "post-deploy" : "npm install ; npm run clean ; npm run build ; npm run start_production"
     }
   }
 }
