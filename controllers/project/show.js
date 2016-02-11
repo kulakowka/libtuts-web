@@ -3,18 +3,14 @@
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
 
-const async = require('async')
-
 // GET /:platform/:name
-module.exports = function show (req, res, next) {
-  async.parallel({
-    project: async.asyncify(() => loadProject(req.params)),
-    tutorials: async.asyncify(() => loadTutorials(req.params))
-  }, (err, results) => {
-    if (err) return next(err)
-    if (!results.project) return next(notFoundError('Project not found'))
-    res.render('projects/show', results)
-  })
+module.exports = function *(req, res, next) {
+  let results = yield {
+    project: loadProject(req.params),
+    tutorials: loadTutorials(req.params)
+  }
+  if (!results.project) return notFoundError('Project not found')
+  res.render('projects/show', results)
 }
 
 function loadProject (condition) {

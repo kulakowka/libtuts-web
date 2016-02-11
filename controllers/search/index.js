@@ -3,10 +3,9 @@
 const API = require('../../utils/api')
 
 // GET /search
-module.exports = function index (req, res, next) {
-  loadTutorials(req.query).then(tutorials => {
-    res.render('search/index', {tutorials})
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let tutorials = yield loadTutorials(req.query)
+  res.render('search/index', {tutorials})
 }
 
 function loadTutorials (query) {

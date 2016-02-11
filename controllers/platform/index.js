@@ -3,10 +3,9 @@
 const API = require('../../utils/api')
 
 // GET /platforms
-module.exports = function index (req, res, next) {
-  loadPlatforms().then(platforms => {
-    res.render('platforms/index', {platforms})
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let platforms = yield loadPlatforms()
+  res.render('platforms/index', {platforms})
 }
 
 function loadPlatforms () {

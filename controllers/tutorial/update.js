@@ -3,10 +3,9 @@
 const API = require('../../utils/api')
 
 // POST /tutorial/:id
-module.exports = function index (req, res, next) {
-  updateTutorial(req.params, req.body).then(tutorial => {
-    res.redirect(tutorial.webUrl)
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let tutorial = yield updateTutorial(req.params, req.body)
+  res.redirect(tutorial.webUrl)
 }
 
 function updateTutorial (params, body) {

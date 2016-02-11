@@ -3,13 +3,12 @@
 const API = require('../../utils/api')
 
 // POST /tutorials
-module.exports = function index (req, res, next) {
+module.exports = function *(req, res, next) {
   let creator = req.session.user
   req.body.creator = creator
   req.body.contributors = [creator]
-  createTutorial(req.body).then(tutorial => {
-    res.redirect(tutorial.webUrl)
-  }).catch(next)
+  let tutorial = yield createTutorial(req.body)
+  res.redirect(tutorial.webUrl)
 }
 
 function createTutorial (body) {

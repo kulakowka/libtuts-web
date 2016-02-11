@@ -3,10 +3,9 @@
 const API = require('../../utils/api')
 
 // GET /languages
-module.exports = function index (req, res, next) {
-  loadLanguages().then(languages => {
-    res.render('languages/index', {languages})
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let languages = yield loadLanguages()
+  res.render('languages/index', {languages})
 }
 
 function loadLanguages () {

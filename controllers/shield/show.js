@@ -4,7 +4,7 @@ const numeral = require('numeral')
 const API = require('../../utils/api')
 
 // GET /shield/:platform/:project
-module.exports = function show (req, res, next) {
+module.exports = function *(req, res, next) {
   res.set({
     'Cache-Control': 'public, max-age=3600',
     'Content-Type': 'image/svg+xml'

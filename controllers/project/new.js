@@ -1,18 +1,15 @@
 'use strict'
 
-const async = require('async')
 const API = require('../../utils/api')
 
 // GET /project/new
-module.exports = function newAction (req, res, next) {
-  async.parallel({
-    languages: async.asyncify(loadLanguages),
-    platforms: async.asyncify(loadPlatforms)
-  }, (err, results) => {
-    if (err) return next(err)
-    results.project = {}
-    res.render('projects/new', results)
-  })
+module.exports = function *(req, res, next) {
+  let results = yield {
+    languages: loadLanguages(),
+    platforms: loadPlatforms()
+  }
+  results.project = {}
+  res.render('projects/new', results)
 }
 
 function loadLanguages () {

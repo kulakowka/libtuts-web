@@ -3,8 +3,9 @@
 const API = require('../../utils/api')
 
 // GET /suggest/platforms
-module.exports = (req, res) => {
-  loadItems().then(res.json.bind(res)).catch(_ => res.json([]))
+module.exports = function *(req, res) {
+  let items = yield loadItems(req.query.q)
+  res.json(items)
 }
 
 function loadItems (q) {

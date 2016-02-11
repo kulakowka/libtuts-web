@@ -3,14 +3,11 @@
 const API = require('../../utils/api')
 
 // POST /comments
-module.exports = function index (req, res, next) {
-  let creator = req.session.user
-  req.body.creator = creator
-  createComment(req.body).then(comment => {
-    return loadComment(comment._id).then(comment => {
-      res.render('comments/includes/item', {comment})
-    })
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  req.body.creator = req.session.user
+  let newComment = yield createComment(req.body)
+  let comment = yield loadComment(newComment._id)
+  res.render('comments/includes/item', {comment})
 }
 
 function createComment (body) {

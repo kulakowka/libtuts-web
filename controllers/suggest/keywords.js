@@ -4,6 +4,6 @@ let keywords = 'javascript, npm, bundle, commonj-esque, commonjs, require, brows
 let data = keywords.split(',').map(k => ({text: k, value: k}))
 
 // GET /suggest/keywords
-module.exports = (req, res) => {
+module.exports = function *(req, res) {
   res.json(data)
 }

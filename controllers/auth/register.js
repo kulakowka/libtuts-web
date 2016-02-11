@@ -3,11 +3,10 @@
 const API = require('../../utils/api')
 
 // POST /auth/register
-module.exports = function register (req, res, next) {
-  createUser(req.body).then(user => {
-    req.session.user = user
-    res.redirect(user.webUrl)
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let user = yield createUser(req.body)
+  req.session.user = user
+  res.redirect(user.webUrl)
 }
 
 function createUser (body) {

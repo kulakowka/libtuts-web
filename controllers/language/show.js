@@ -3,19 +3,15 @@
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
 
-const async = require('async')
-
 // GET /language/:name
-module.exports = function show (req, res, next) {
-  async.parallel({
-    language: async.asyncify(() => loadLanguage(req.params)),
-    projects: async.asyncify(() => loadProjects(req.params.name)),
-    tutorials: async.asyncify(() => loadTutorials(req.params.name))
-  }, (err, results) => {
-    if (err) return next(err)
-    if (!results.language) return next(notFoundError('Language not found'))
-    res.render('languages/show', results)
-  })
+module.exports = function *(req, res, next) {
+  let results = yield {
+    language: loadLanguage(req.params),
+    projects: loadProjects(req.params.name),
+    tutorials: loadTutorials(req.params.name)
+  }
+  if (!results.language) return notFoundError('Language not found')
+  res.render('languages/show', results)
 }
 
 function loadLanguage (params) {

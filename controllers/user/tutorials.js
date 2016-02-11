@@ -2,32 +2,19 @@
 
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
-const async = require('async')
 
 // GET /user/:username/comments
-module.exports = function show (req, res, next) {
-  async.waterfall([
-    loadUser(req.params),
-    loadTutorials
-  ], (err, results) => {
-    if (err) return next(err)
-    if (!results.user) return next(notFoundError('User not found'))
-    console.log(results)
-    res.render('users/tutorials', results)
-  })
+module.exports = function *(req, res, next) {
+  let user = yield loadUser(req.params)
+  let tutorials = yield loadTutorials(user)
+  if (!user) return notFoundError('User not found')
+  res.render('users/tutorials', {user, tutorials})
 }
 
 function loadUser (params) {
-  return (callback) => {
-    API.model('user').findOne(params).exec().then(user => callback(null, user))
-  }
+  return API.model('user').findOne(params).exec()
 }
 
 function loadTutorials (user, callback) {
-  API.model('tutorial').find({creator: user._id})
-  .sort('-createdAt').populate('creator').exec()
-  .then(tutorials => callback(null, {
-    user,
-    tutorials
-  }))
+  return API.model('tutorial').find({creator: user._id}).sort('-createdAt').populate('creator').exec()
 }

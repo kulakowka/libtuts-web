@@ -3,10 +3,9 @@
 const API = require('../../utils/api')
 
 // GET /
-module.exports = function index (req, res, next) {
-  loadProjects().then(projects => {
-    res.render('projects/index', {projects})
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let projects = yield loadProjects()
+  res.render('projects/index', {projects})
 }
 
 function loadProjects () {

@@ -2,18 +2,15 @@
 
 const notFoundError = require('../../utils/notFoundError')
 const API = require('../../utils/api')
-const async = require('async')
 
 // GET /tutorial/:_id
-module.exports = function show (req, res, next) {
-  async.parallel({
-    tutorial: async.asyncify(() => loadTutorial(req.params)),
-    comments: async.asyncify(() => loadComments(req.params))
-  }, (err, results) => {
-    if (err) return next(err)
-    if (!results.tutorial) return next(notFoundError('Tutorial not found'))
-    res.render('tutorials/show', results)
-  })
+module.exports = function *(req, res, next) {
+  let results = yield {
+    tutorial: loadTutorial(req.params),
+    comments: loadComments(req.params)
+  }
+  if (!results.tutorial) return notFoundError('Tutorial not found')
+  res.render('tutorials/show', results)
 }
 
 function loadTutorial (params) {

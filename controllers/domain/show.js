@@ -3,13 +3,12 @@
 const API = require('../../utils/api')
 
 // GET /domain/:sourceDomain
-module.exports = function index (req, res, next) {
-  loadTutorials(req.params).then(tutorials => {
-    res.render('domains/show', {
-      tutorials,
-      domain: req.params.sourceDomain
-    })
-  }).catch(next)
+module.exports = function *(req, res, next) {
+  let tutorials = yield loadTutorials(req.params)
+  res.render('domains/show', {
+    tutorials,
+    domain: req.params.sourceDomain
+  })
 }
 
 function loadTutorials (params) {
