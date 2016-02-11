@@ -18,6 +18,7 @@ module.exports.onFormSubmit = function onFormSubmit () {
     data: data,
     dataType: 'html'
   }).done(function (html) {
+    commentsList.find('.noComments').remove()
     _editor.setValue('')
     commentsList.prepend(html)
   })
