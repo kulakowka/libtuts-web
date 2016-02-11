@@ -13,6 +13,14 @@ r
 .get('/', m.searchFormData, c.mainpage.index)
 .get('/ui', m.render('ui/index'))
 .post('/ui', c.ui.create)
+
+.get('/about', m.render('info/about'))
+.get('/terms', m.render('info/terms'))
+.get('/privacy', m.render('info/privacy'))
+.get('/security', m.render('info/security'))
+.get('/contact', m.render('info/contact'))
+.get('/help', m.render('info/help'))
+
 .get('/search', m.searchFormData, c.search.index)
 .post('/auth/logout', c.auth.logout)
 .get('/auth/recover', c.auth.recover)
