@@ -1,15 +1,14 @@
 extends ../layout
 
 block content
-  .row
-    .col.col-5.col-l
-      include includes/about
-    .col.col-5.col-l
-      if tutorials.length
-        section
-          h2 #{project.name} tutorials:
-          include ../tutorials/includes/list
-      else
-        h2 No tutorials. 
-        p 
-          a(href='/tutorial/new?project=' + project.platform + '/' + project.name) Create tutorial for #{project.name}
+
+  include includes/about
+
+  if tutorials.length
+    section
+      h2 #{project.name} tutorials:
+      include ../tutorials/includes/list
+  else
+    h2 No tutorials. 
+    p 
+      a(href='/tutorial/new?project=' + project.platform + '/' + project.name) Create tutorial for #{project.name}

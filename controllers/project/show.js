@@ -22,5 +22,6 @@ function loadProject (condition) {
 }
 
 function loadTutorials (condition) {
-  return API.model('tutorial').find({projects: {$elemMatch: condition}}).sort('-createdAt').exec()
+  let project = condition.platform + '/' + condition.name
+  return API.model('tutorial').find({projects: {$in: [project]}}).populate('creator').sort('-createdAt').exec()
 }

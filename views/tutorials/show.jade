@@ -9,9 +9,10 @@ block content
         h1
           = tutorial.title
 
-        
+                
         if tutorial.contentHtml
-          .content!= tutorial.contentHtml
+          section
+            .content!= tutorial.contentHtml
 
         section
           h2 Meta information
