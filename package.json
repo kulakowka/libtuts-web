@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "./node_modules/.bin/pm2 start ecosystem.json",
     "gulp": "./node_modules/.bin/gulp",
     "clean": "./node_modules/.bin/gulp clean",
     "build": "NODE_ENV=production ./node_modules/.bin/gulp build",
