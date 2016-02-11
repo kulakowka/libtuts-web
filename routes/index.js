@@ -47,6 +47,8 @@ r
 .post('/tutorial/:_id', c.tutorial.update)
 .get('/tutorial/:_id/edit', c.tutorial.edit)
 
+.get('/domain/:sourceDomain', c.domain.show)
+
 .post('/comments', c.comment.create)
 
 .get('/shield/:platform/:name.svg', c.shield.show)

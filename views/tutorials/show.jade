@@ -19,7 +19,10 @@ block content
             if tutorial.sourceUrl
               dt Source URL:
               dd
-                a(href=tutorial.sourceUrl)= tutorial.sourceUrl
+                a(href=tutorial.sourceUrl target="_blank")= tutorial.sourceUrl
+              dt Domain:
+              dd
+                a(href='/domain/'+tutorial.sourceDomain)= tutorial.sourceDomain
                 
             dt Created at:
               dd= moment(tutorial.createdAt).fromNow()

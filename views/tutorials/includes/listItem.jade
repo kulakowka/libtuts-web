@@ -7,3 +7,6 @@
     a(href="/user/"+tutorial.creator.username)= tutorial.creator.username
     = " · "
     a(href=tutorial.webUrl)= moment(tutorial.createdAt).fromNow()    
+    if tutorial.sourceDomain
+      = " · "
+      a(href='/domain/'+tutorial.sourceDomain)= tutorial.sourceDomain
