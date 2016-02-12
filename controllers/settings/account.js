@@ -7,7 +7,7 @@ const API = require('../../utils/api')
 module.exports = function *(req, res, next) {
   let user = yield loadUser(req.session.user._id)
   if (!user) return notFoundError('User not found')
-  res.render('settings/index', {user})
+  res.render('settings/account', {user})
 }
 
 function loadUser (id) {

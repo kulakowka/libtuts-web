@@ -38,7 +38,6 @@ router
 .get('/search', middlewares.searchFormData, controllers.search.index)
 .post('/auth/logout', controllers.auth.logout)
 .get('/auth/recover', controllers.auth.recover)
-.get('/auth/resend', controllers.auth.resend)
 .get('/auth/signin', controllers.auth.signin)
 .get('/auth/signup', controllers.auth.signup)
 .post('/auth/login', controllers.auth.login)
@@ -70,7 +69,12 @@ router
 .get('/user/:username', controllers.user.show)
 .get('/user/:username/tutorials', controllers.user.tutorials)
 .get('/user/:username/comments', controllers.user.comments)
-.get('/settings', controllers.settings.index)
+
+.get('/settings/profile', controllers.settings.profile)
+.get('/settings/account', controllers.settings.account)
+.get('/settings/emails', controllers.settings.emails)
+.get('/settings/notifications', controllers.settings.notifications)
+
 .get('/:name', controllers.platform.show)
 .get('/:platform/:name', controllers.project.show)
 
