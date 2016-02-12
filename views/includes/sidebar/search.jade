@@ -1,5 +1,5 @@
 if search  
-  section.search
+  section.search(style="min-height: 270px;")
     //- h2 Find tutorials
     form(action="/search" name="search")
       .field
@@ -18,4 +18,4 @@ if search
             each platform in search.platforms
               option(value=platform selected)= platform
       .field
-        button.btn.btn-action(type="submit") search
+        button.btn.btn-action(type="submit") Search tutorials

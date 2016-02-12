@@ -3,5 +3,7 @@ extends ../layout
 block content
   .row
     .col.col-4
-      h1 Create account
-      include includes/signupForm
+      h1 Create your personal account
+      section
+        include includes/signupForm
+      p Do you have an account? <a href="/auth/signin">Sign in</a>.

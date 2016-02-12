@@ -1,11 +1,13 @@
 form.defaultForm(action="/auth/login" method="post" name="signin")
+
   .field
-    input(type="text" name="identifier" placeholder="Email or username" required)
+    input(type="text" name="identifier" placeholder="Username or email address" required)
+
   .field
     input(type="password" name="password" placeholder="Password" required)
-  .field
-    button.btn.btn-action(type="submit") Sign in
-    span.links
-      a(href="/auth/recover") Forgot your password  
-      = " or "
-      a(href="/auth/resend") not received a letter?
+    .field-description 
+      a(href="/auth/recover") Forgot password?
+
+  .field.buttons.center
+    button.btn.btn-action.btn-wide(type="submit") Sign in
+    
