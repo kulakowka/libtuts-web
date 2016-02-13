@@ -9,5 +9,5 @@ module.exports = function *(req, res, next) {
 }
 
 function loadTutorials () {
-  return API.model('tutorial').find().sort('-createdAt').populate('creator').limit(100).exec()
+  return API.model('tutorial').find().sort('-createdAt').populate('creator').limit(10).exec()
 }

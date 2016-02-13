@@ -1,0 +1,11 @@
+form.defaultForm.profileForm(action='/settings' method="post" name="settings")
+  .field
+    input(type="text" name="username" placeholder="Username" value=user.username disabled autocomplete="off")
+  .field
+    input(type="text" name="homepageUrl" placeholder="Homepage URL" value=user.homepageUrl autocomplete="off")
+  .field
+    input(type="text" name="companyName" placeholder="Company name" value=user.companyName autocomplete="off")
+  .field
+    input(type="text" name="location" placeholder="Location" value=user.location autocomplete="off")
+  .field.buttons
+    button.btn.btn-action(type="submit" name="update") Update profile

@@ -1,5 +1,5 @@
 if search  
-  section.search(style="min-height: 270px;")
+  section.search(style="min-height: 293px;")
     //- h2 Find tutorials
     form(action="/search" name="search")
       .field
@@ -13,9 +13,9 @@ if search
             each language in search.languages
               option(value=language selected)= language
       .field
-        select(name="platforms[]" multiple placeholder="Platfroms")
-          if search.platforms
-            each platform in search.platforms
-              option(value=platform selected)= platform
+        select(name="projects[]" multiple placeholder="Projects")
+          if search.projects
+            each project in search.projects
+              option(value=project selected)= project
       .field
         button.btn.btn-action(type="submit") Search tutorials

@@ -1,0 +1,7 @@
+form.defaultForm.changePasswordForm(action='/settings' method="post" name="settings")
+  .field
+    input(type="email" name="email" placeholder="Email" value=user.email required autocomplete="off")
+  .field
+    input(type="password" name="password" placeholder="Password" required autocomplete="off")
+  .field.buttons
+    button.btn.btn-action(type="submit" name="update") Update email

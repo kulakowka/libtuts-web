@@ -1,10 +1,10 @@
 
 form.defaultForm.tutorialForm(action=(tutorial._id ? tutorial.webUrl : '/tutorials') method="post" name="tutorial")
   .field
-    input(type="text" name="title" placeholder="Title" value=tutorial.title required autofocus)
+    input(type="text" name="title" placeholder="Title" value=tutorial.title required autofocus autocomplete="off")
   
   .field
-    input(type="url" name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl)
+    input(type="url" name="sourceUrl" placeholder="Source URL" value=tutorial.sourceUrl autocomplete="off")
   
   .field
     textarea(name="content" placeholder="Content")= tutorial.content
@@ -14,12 +14,6 @@ form.defaultForm.tutorialForm(action=(tutorial._id ? tutorial.webUrl : '/tutoria
       if languages
         each language in languages
           option(value=language.name )= language.name
-
-  .field
-    select.js-default-select(name="platforms[]" multiple placeholder="Select the related platforms")
-      if platforms
-        each platform in platforms
-          option(value=platform.name )= platform.name
 
   .field    
     select(name="projects[]" multiple placeholder="Specify the projects referred to in the tutorial")

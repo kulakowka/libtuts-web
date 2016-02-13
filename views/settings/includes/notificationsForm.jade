@@ -1,0 +1,62 @@
+form.defaultForm.changePasswordForm(action='/settings' method="post" name="settings")
+  
+  //- Дайджест новых материалов на сайте
+  //- - новые проекты в языках и платформах которые я отслеживаю
+  //- - новые уроки в языках, платформах и проектах которые я отслеживаю
+  //- - период отправки дайджеста:
+  //-   - раз в день
+  //-   - раз в неделю
+  //-   - раз в месяц
+
+  //- Уведомления о новых комментариях в публикациях
+  //- - которые я написал
+  //-   - на email
+  //-   - на сайте
+  //- - в которых я оставил комментарий
+  //-   - на email
+  //-   - на сайте
+  //- - которые я добавил в отслеживаемые
+  //-   - на email
+  //-   - на сайте
+
+  //- Уведомления о новых уроках
+  //- - которые появляются в языках программирования на которые я подписан
+  //-   - на email
+  //-   - на сайте
+  //- - которые появляются в платформах на которые я подписан
+  //-   - на email
+  //-   - на сайте
+  //- - которые появляются в проектах на которые я подписан
+  //-   - на email
+  //-   - на сайте
+
+
+
+
+
+  h3 Projects
+  .field-label Updates to any projects you’re watching.  
+  .field
+    input(type="checkbox" name="notification[newTutorials][email]")
+    label Email
+    input(type="checkbox" name="notification[newTutorials][web]")
+    label Web
+
+  h3 Tutorials  
+  .field-label 
+
+    //- Updates to any tutorials you’re watching.
+  .field
+    input(type="checkbox" name="notification[newTutorials][email]")
+    label Email
+    input(type="checkbox" name="notification[newTutorials][web]")
+    label Web
+  .field-label Updates to any tutorials you’re watching.
+  .field
+    input(type="checkbox" name="notification[newTutorials][email]")
+    label Email
+    input(type="checkbox" name="notification[newTutorials][web]")
+    label Web
+
+  .field.buttons
+    button.btn.btn-action(type="submit" name="update") Update password
