@@ -3,18 +3,30 @@
 // - Добавление проекта
 
 form.defaultForm
+  .form-error
+    border 1px dashed crimson
+    color crimson
+    margin 0 0 1em
+    border-radius 4px
+    padding 10px
+    text-align center
+    font-size 0.9em
+  .field-error
+    color crimson
+    margin 0.3em 0 1em
+    text-align left
+    font-size 0.9em
+  .field-description
+    text-align left
+    font-size 0.9em
+    line-height 1.4em
+    color #222
+    margin 0.5em 0 0
+  .field-description + .field,
   .field + .field
     margin-top 1.4em
   .field
     text-align left
-    .field-description
-      font-size 0.9em
-      line-height 1.4em
-      color #222
-      margin 0.5em 0 0
-      // a
-      //   color #aaa
-      //   font-weight bold
     > input[type="text"],
     > input[type="email"],
     > input[type="url"],
@@ -44,13 +56,20 @@ form.defaultForm
       &:required
         // border 1px solid pink
       &:focus:invalid
-        border 1px solid red
+        border 1px solid crimson
       &:focus:valid 
         border 1px solid deepskyblue
     textarea
       resize none
       line-height 20px
       padding 10px 15px
+  .field-with-error
+    > input[type="text"],
+    > input[type="email"],
+    > input[type="url"],
+    > input[type="password"],
+    > textarea
+      border 1px solid crimson
 
   .field
     .links

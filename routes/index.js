@@ -37,11 +37,16 @@ router
 
 .get('/search', middlewares.searchFormData, controllers.search.index)
 .post('/auth/logout', controllers.auth.logout)
+
 .get('/auth/recover', controllers.auth.recover)
+.post('/auth/resend', controllers.auth.resend)
+
 .get('/auth/signin', controllers.auth.signin)
 .get('/auth/signup', controllers.auth.signup)
+
 .post('/auth/login', controllers.auth.login)
 .post('/auth/register', controllers.auth.register)
+
 .get('/language/:name', controllers.language.show)
 .get('/languages', controllers.language.index)
 .get('/platforms', controllers.platform.index)

@@ -1,20 +1,19 @@
-form.defaultForm(action="/auth/register" method="post" name="signin")
+form.defaultForm(action="/auth/register" method="post" name="signup")
   
   .field
-    input(type="text" name="username" placeholder="Username" required pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{2,20}$" maxlength=20 autocomplete="off")
-    .field-description This will be your username.
+    input(type="text" name="username" placeholder="Username" required autocomplete="off")
+  .field-description This will be your username.
   
   .field
     input(type="email" name="email" placeholder="Email" required autocomplete="off")
-    .field-description You will occasionally receive account related emails. We promise not to share your email with anyone.
+  .field-description You will occasionally receive account related emails. We promise not to share your email with anyone.
   
   .field
     input(type="password" name="password" placeholder="Password" required  autocomplete="off")
-    //- pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$")      
-    .field-description Use at least one lowercase letter, one numeral, and seven characters.
+  .field-description Use at least one lowercase letter, one numeral, and seven characters.
   
   .field
-    .field-description By clicking on "Create an account" below, you are agreeing to the <a href="/terms">Terms of Service</a> and the <a href="/privacy">Privacy Policy</a>.
+  .field-description By clicking on "Create an account" below, you are agreeing to the <a href="/terms">Terms of Service</a> and the <a href="/privacy">Privacy Policy</a>.
   
   .field.buttons.center
     button.btn.btn-action.btn-wide(type="submit") Create an account

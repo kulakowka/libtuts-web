@@ -40,6 +40,12 @@ $(document)
 
   // auth
   .on('click', '.js-button-logout', auth.logout)
+  .on('submit', 'form[name="signin"]', auth.signin)
+  .on('submit', 'form[name="signup"]', auth.signup)
+  .on('submit', 'form[name="recoverPassword"]', auth.recoverPassword)
+
+  // forms
+  .on('change', 'form input, form select, form textarea', forms.clearFieldError)
 
   // comments
   .on('submit', '.commentForm', comment.onFormSubmit)

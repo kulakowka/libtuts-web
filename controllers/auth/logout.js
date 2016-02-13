@@ -3,5 +3,5 @@
 // POST /auth/logout
 module.exports = function *(req, res, next) {
   delete req.session.user
-  res.redirect('/')
+  res.json({logout: true})
 }
