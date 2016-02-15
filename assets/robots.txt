@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /ui
+Disallow: /auth
+Disallow: /suggest
+Disallow: /domain
+Disallow: /comments
+Disallow: /settings
+
+# Sitemap: http://1po.st/sitemap.xml
+Host: libtuts.com

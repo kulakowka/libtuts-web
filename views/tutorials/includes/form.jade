@@ -10,13 +10,13 @@ form.defaultForm.tutorialForm(action=(tutorial._id ? tutorial.webUrl : '/tutoria
     textarea(name="content" placeholder="Content")= tutorial.content
     
   .field
-    select.js-default-select(name="languages[]" multiple placeholder="Specify the programming languages")
+    select.js-default-select(name="languages[]" multiple placeholder="Languages  ")
       if languages
         each language in languages
           option(value=language.name )= language.name
 
   .field    
-    select(name="projects[]" multiple placeholder="Specify the projects referred to in the tutorial")
+    select(name="projects[]" multiple placeholder="Projects  ")
       if tutorial.projects
         each project in tutorial.projects
           option(value=project selected )= project
@@ -25,4 +25,4 @@ form.defaultForm.tutorialForm(action=(tutorial._id ? tutorial.webUrl : '/tutoria
       
   .field.buttons
     button.btn.btn-action(type="submit" name="publish") Publish
-    button.btn(type="submit" name="draft") Save draft
+    //- button.btn(type="submit" name="draft") Save draft

@@ -1,6 +1,6 @@
 .platformItem
   a(href=platform.webUrl)
-    img(src=`/images/pics/${platform.name}.png` )
+    img(src=`/images/pics/${encodeURIComponent(platform.name)}.png` )
   h3
     a(href=platform.webUrl)= platform.name
   .meta  

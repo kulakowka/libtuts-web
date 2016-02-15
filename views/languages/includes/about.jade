@@ -1,6 +1,6 @@
 .aboutLanguage  
   h1= language.name
-  img(src=`/images/pics/${language.name}.png`)
+  img(src=`/images/pics/${encodeURIComponent(language.name)}.png`)
   .meta
     p #{language.projectsCount} projects
     p #{language.tutorialsCount} tutorials
