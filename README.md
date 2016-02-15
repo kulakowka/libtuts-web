@@ -4,15 +4,15 @@
 
 Задачи по веб-морде:
 * сделать тексты для всех info-страниц
-  * Terms
-  * Privacy
-  * Security
-  * Help
-  * About
-  * Blog
-  * Partners
-  * Media
-  * Contact
+* Terms
+* Privacy
+* Security
+* Help
+* About
+* Blog
+* Partners
+* Media
+* Contact
 * Добавить переводы? или хотя бы плюрализацию
 * Доделать og и meta теги
 * Сделать robots.txt
