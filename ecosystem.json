@@ -4,7 +4,7 @@
       "name"      : "WEB",
       "node_args" : "--harmony",
       "script"    : "bin/www",
-      "instances" : 4,
+      "instances" : 2,
       "autorestart": true,
       "watch": true,
       "ignore_watch": [
