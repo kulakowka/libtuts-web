@@ -1,7 +1,7 @@
 section.commentItem(id=`comment_${comment._id}`)
   .meta
     if comment.creator
-      a.creator(href="/users/"+comment.creator.username)= comment.creator.username
+      a.creator(href="/user/"+comment.creator.username)= comment.creator.username
     
     a(href=comment.webUrl)= moment(comment.createdAt).fromNow()
     
