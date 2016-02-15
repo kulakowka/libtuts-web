@@ -9,7 +9,6 @@ module.exports = function *(req, res, next) {
     tutorial: loadTutorial(req.params),
     comments: loadComments(req.params)
   }
-  
   if (!results.tutorial) return notFoundError('Tutorial not found')
   res.render('tutorials/show', results)
 }
