@@ -2,7 +2,6 @@ var $ = require('jquery')
 var forms = require('./forms')
 
 module.exports.logout = function logout () {
-  console.log('logout')
   $.ajax({
     url: '/auth/logout',
     method: 'post',
@@ -15,7 +14,6 @@ module.exports.logout = function logout () {
 }
 
 module.exports.signin = function signin () {
-  console.log('signin')
   var form = $(this)
   var data = form.serialize()
 
@@ -33,7 +31,6 @@ module.exports.signin = function signin () {
 }
 
 module.exports.signup = function signup () {
-  console.log('signup')
   var form = $(this)
   var data = form.serialize()
 
@@ -51,7 +48,6 @@ module.exports.signup = function signup () {
 }
 
 module.exports.recoverPassword = function recoverPassword () {
-  console.log('recoverPassword')
   var form = $(this)
   var data = form.serialize()
 

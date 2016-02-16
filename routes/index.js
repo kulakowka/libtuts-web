@@ -42,10 +42,12 @@ router
 .post('/auth/resend', controllers.auth.resend)
 
 .get('/auth/signin', controllers.auth.signin)
-.get('/auth/signup', controllers.auth.signup)
-
 .post('/auth/login', controllers.auth.login)
+
+.get('/auth/signup', controllers.auth.signup)
 .post('/auth/register', controllers.auth.register)
+
+.get('/auth/verify/:token', controllers.auth.verify)
 
 .get('/language/:name', controllers.language.show)
 .get('/languages', controllers.language.index)
@@ -75,10 +77,10 @@ router
 .get('/user/:username/tutorials', controllers.user.tutorials)
 .get('/user/:username/comments', controllers.user.comments)
 
-.get('/settings/profile', controllers.settings.profile)
-.get('/settings/account', controllers.settings.account)
-.get('/settings/emails', controllers.settings.emails)
-.get('/settings/notifications', controllers.settings.notifications)
+.get('/settings/profile', middlewares.ifUser, controllers.settings.profile)
+.get('/settings/account', middlewares.ifUser, controllers.settings.account)
+.get('/settings/emails', middlewares.ifUser, controllers.settings.emails)
+.get('/settings/notifications', middlewares.ifUser, controllers.settings.notifications)
 
 .get('/:name', controllers.platform.show)
 .get('/:platform/:name', controllers.project.show)

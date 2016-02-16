@@ -1,12 +1,19 @@
 'use strict'
 
 const API = require('../../utils/api')
+const mailerApi = require('../../utils/mailerApi')
 
 // POST /auth/resend
 module.exports = function *(req, res, next) {
   let user = yield loadUser(req.body)
   if (!user) return res.json({error: {msg: 'Can\'t find that email, sorry.'}})
-  // здесь мы отправим запрос к API и попросим его отправить юзеру письмо еще раз
+
+  // let token = '123' // yield createVerificationToken(user.id)
+
+  // здесь мы отправим запрос в мейлер и попросим его отправить юзеру письмо
+  // sendEmail(user, token)
+
+  // надо вернуть какой нибудь результат, вернм мыло и токен (для дебага, потом уберу)
   res.json({email: user.email})
 }
 
