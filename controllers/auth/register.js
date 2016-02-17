@@ -9,10 +9,10 @@ module.exports = function *(req, res, next) {
   if (user.errors) return res.json(user)
   let verificationToken = yield createVerificationToken(user.id)
   // здесь мы отправим запрос в мейлер и попросим его отправить юзеру письмо
-  let result = yield MailerAPI.sendVerifyEmail(user, verificationToken.token)
+  yield MailerAPI.sendVerifyEmail(user, verificationToken.token)
   req.session.user = user
   res.json(user)
-  console.log('sendVerifyEmail result:', result)
+  // console.log('sendVerifyEmail result:', result)
 }
 
 function createVerificationToken (user) {
