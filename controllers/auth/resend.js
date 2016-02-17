@@ -1,20 +1,24 @@
 'use strict'
 
 const API = require('../../utils/api')
-const mailerApi = require('../../utils/mailerApi')
+const MailerAPI = require('../../utils/mailerApi')
 
 // POST /auth/resend
 module.exports = function *(req, res, next) {
   let user = yield loadUser(req.body)
   if (!user) return res.json({error: {msg: 'Can\'t find that email, sorry.'}})
 
-  // let token = '123' // yield createVerificationToken(user.id)
-
+  // сгенерим новый токе
+  let verificationToken = yield createVerificationToken(user.id)
   // здесь мы отправим запрос в мейлер и попросим его отправить юзеру письмо
-  // sendEmail(user, token)
+  let result = yield MailerAPI.sendResetPassword(user, verificationToken.token)
 
   // надо вернуть какой нибудь результат, вернм мыло и токен (для дебага, потом уберу)
-  res.json({email: user.email})
+  res.json(result)  // сейчас возвращает {"message":"job created","id":69} это для тестов
+}
+
+function createVerificationToken (user) {
+  return API.model('verificationToken').create({user}).exec()
 }
 
 function loadUser (body) {

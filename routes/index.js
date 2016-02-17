@@ -41,6 +41,9 @@ router
 .get('/auth/recover', controllers.auth.recover)
 .post('/auth/resend', controllers.auth.resend)
 
+.get('/auth/reset/:token', controllers.auth.reset)
+.post('/auth/update_password', controllers.auth.update_password)
+
 .get('/auth/signin', controllers.auth.signin)
 .post('/auth/login', controllers.auth.login)
 

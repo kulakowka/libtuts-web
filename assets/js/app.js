@@ -43,6 +43,7 @@ $(document)
   .on('submit', 'form[name="signin"]', auth.signin)
   .on('submit', 'form[name="signup"]', auth.signup)
   .on('submit', 'form[name="recoverPassword"]', auth.recoverPassword)
+  .on('submit', 'form[name="resetPassword"]', auth.resetPassword)
 
   // forms
   .on('change', 'form input, form select, form textarea', forms.clearFieldError)

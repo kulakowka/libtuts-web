@@ -6,7 +6,27 @@ const request = require('request').defaults({
   timeout: 1000,
   time: true
 })
+module.exports.sendResetPassword = function (user, token) {
+  const data = {
+    type: 'postbox',
+    data: {
+      subject: '[LibTuts] Please reset your password',
+      to: user.email,
+      template: 'reset-password',
+      params: {
+        username: user.username,
+        email: user.email,
+        resetUrl: config.baseUrl + '/auth/reset/' + token
+      }
+    },
+    options: {
+      attempts: 5,
+      priority: 'high'
+    }
+  }
 
+  return createJob(data)
+}
 module.exports.sendVerifyEmail = function (user, token) {
   const data = {
     type: 'postbox',

@@ -1,9 +1,12 @@
 'use strict'
 
-const manifest = require('../public/rev-manifest')
 const moment = require('moment')
 const numeral = require('numeral')
 const config = require('../config')
+
+const jetpack = require('fs-jetpack')
+const file = '../public/rev-manifest.json'
+const manifest = jetpack.read(file, 'json') || {}
 
 module.exports = function viewHelpersMiddleware (req, res, next) {
   res.locals.currentUser = req.session.user

@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  .row
+    .col.col-4
+      section
+        if verificationToken
+          include includes/resetPasswordForm
+        else
+          p Token expired or not found
+        

@@ -64,3 +64,22 @@ module.exports.recoverPassword = function recoverPassword () {
 
   return false
 }
+
+module.exports.resetPassword = function resetPassword () {
+  var form = $(this)
+  var data = form.serialize()
+
+  $.ajax({
+    url: form.attr('action'),
+    method: 'post',
+    data: data,
+    dataType: 'json'
+  }).done(function (json) {
+    if (json.error || json.errors) return forms.showErrors(form, json)
+    form.remove()
+    $('.sucessReset').removeClass('hidden')
+  })
+
+  return false
+}
+
